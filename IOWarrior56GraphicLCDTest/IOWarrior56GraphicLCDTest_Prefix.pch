@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'IOWarrior56GraphicLCDTest' target in the 'IOWarrior56GraphicLCDTest' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

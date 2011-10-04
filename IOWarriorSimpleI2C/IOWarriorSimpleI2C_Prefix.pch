@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'IOWarriorSimpleI2C' target in the 'IOWarriorSimpleI2C' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4D35753C0A02687900647E88 /* IOWarriorAppleScriptGateway_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* IOWarriorAppleScriptGateway_Prefix.h */; };
+		4D35753D0A02687900647E88 /* NSApplicationScriptingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DF2127403D83EF6000A9090 /* NSApplicationScriptingAdditions.h */; };
+		4D35753E0A02687900647E88 /* IOWarriorLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DA5454503D85B86000A9090 /* IOWarriorLib.h */; };
+		4D35753F0A02687900647E88 /* IOWarriorPin.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DBD11D903FACA7600A8010B /* IOWarriorPin.h */; };
+		4D3575410A02687900647E88 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		4D3575420A02687900647E88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		4D3575430A02687900647E88 /* IOWarriorSuite.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2127803D84126000A9090 /* IOWarriorSuite.scriptSuite */; };
+		4D3575440A02687900647E88 /* IOWarriorSuite.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2127A03D84137000A9090 /* IOWarriorSuite.scriptTerminology */; };
+		4D3575450A02687900647E88 /* IOWarriorInterface0Test.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 4DA0D98403E05A2500C13869 /* IOWarriorInterface0Test.scpt */; };
+		4D3575460A02687900647E88 /* IOWarriorInterface1Test.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 4D16A0EB03E1899F00AA5D14 /* IOWarriorInterface1Test.scpt */; };
+		4D3575470A02687900647E88 /* IOWarriorPinAccessTest.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 4D30B61703FC5EC800A8010B /* IOWarriorPinAccessTest.scpt */; };
+		4D3575490A02687900647E88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		4D35754A0A02687900647E88 /* NSApplicationScriptingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2127503D83EF6000A9090 /* NSApplicationScriptingAdditions.m */; };
+		4D35754B0A02687900647E88 /* IOWarriorPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD11DA03FACA7600A8010B /* IOWarriorPin.m */; };
+		4D35754C0A02687900647E88 /* IOWarriorLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DFF9C05E4220B007E20CF /* IOWarriorLib.c */; };
+		4D35754E0A02687900647E88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		4D35754F0A02687900647E88 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA5454803D85C9E000A9090 /* IOKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* IOWarriorAppleScriptGateway_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOWarriorAppleScriptGateway_Prefix.h; sourceTree = "<group>"; };
+		4D16A0EB03E1899F00AA5D14 /* IOWarriorInterface1Test.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; path = IOWarriorInterface1Test.scpt; sourceTree = "<group>"; };
+		4D30B61703FC5EC800A8010B /* IOWarriorPinAccessTest.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; path = IOWarriorPinAccessTest.scpt; sourceTree = "<group>"; };
+		4D3575530A02687900647E88 /* Info-IOWarriorAppleScriptGateway.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-IOWarriorAppleScriptGateway.plist"; sourceTree = "<group>"; };
+		4D3575540A02687900647E88 /* IOWarriorAppleScriptGateway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOWarriorAppleScriptGateway.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D5DFF9C05E4220B007E20CF /* IOWarriorLib.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = IOWarriorLib.c; path = "../IOWarrior Lib Sources/IOWarriorLib.c"; sourceTree = SOURCE_ROOT; };
+		4DA0D98403E05A2500C13869 /* IOWarriorInterface0Test.scpt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; lineEnding = 1; path = IOWarriorInterface0Test.scpt; sourceTree = "<group>"; };
+		4DA5454503D85B86000A9090 /* IOWarriorLib.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = IOWarriorLib.h; path = "../IOWarrior Lib Sources/IOWarriorLib.h"; sourceTree = SOURCE_ROOT; };
+		4DA5454803D85C9E000A9090 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
+		4DBD11D903FACA7600A8010B /* IOWarriorPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOWarriorPin.h; sourceTree = "<group>"; };
+		4DBD11DA03FACA7600A8010B /* IOWarriorPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOWarriorPin.m; sourceTree = "<group>"; };
+		4DF2127403D83EF6000A9090 /* NSApplicationScriptingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSApplicationScriptingAdditions.h; sourceTree = "<group>"; };
+		4DF2127503D83EF6000A9090 /* NSApplicationScriptingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSApplicationScriptingAdditions.m; sourceTree = "<group>"; };
+		4DF2127803D84126000A9090 /* IOWarriorSuite.scriptSuite */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IOWarriorSuite.scriptSuite; sourceTree = "<group>"; };
+		4DF2127B03D84137000A9090 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = English; path = English.lproj/IOWarriorSuite.scriptTerminology; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4D35754D0A02687900647E88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D35754E0A02687900647E88 /* Cocoa.framework in Frameworks */,
+				4D35754F0A02687900647E88 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4DF2127403D83EF6000A9090 /* NSApplicationScriptingAdditions.h */,
+				4DF2127503D83EF6000A9090 /* NSApplicationScriptingAdditions.m */,
+				4DBD11D903FACA7600A8010B /* IOWarriorPin.h */,
+				4DBD11DA03FACA7600A8010B /* IOWarriorPin.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				4DA5454803D85C9E000A9090 /* IOKit.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D3575540A02687900647E88 /* IOWarriorAppleScriptGateway.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* IOWarriorAppleScriptGateway */ = {
+			isa = PBXGroup;
+			children = (
+				4DA0D98303E05A0B00C13869 /* Test Scripts */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				4DA5454303D85B5C000A9090 /* IOWarrior Lib Sources */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				4D3575530A02687900647E88 /* Info-IOWarriorAppleScriptGateway.plist */,
+			);
+			name = IOWarriorAppleScriptGateway;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* IOWarriorAppleScriptGateway_Prefix.h */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4DF2127803D84126000A9090 /* IOWarriorSuite.scriptSuite */,
+				4DF2127A03D84137000A9090 /* IOWarriorSuite.scriptTerminology */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DA0D98303E05A0B00C13869 /* Test Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				4DA0D98403E05A2500C13869 /* IOWarriorInterface0Test.scpt */,
+				4D16A0EB03E1899F00AA5D14 /* IOWarriorInterface1Test.scpt */,
+				4D30B61703FC5EC800A8010B /* IOWarriorPinAccessTest.scpt */,
+			);
+			name = "Test Scripts";
+			sourceTree = "<group>";
+		};
+		4DA5454303D85B5C000A9090 /* IOWarrior Lib Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4D5DFF9C05E4220B007E20CF /* IOWarriorLib.c */,
+				4DA5454503D85B86000A9090 /* IOWarriorLib.h */,
+			);
+			name = "IOWarrior Lib Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4D35753B0A02687900647E88 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D35753C0A02687900647E88 /* IOWarriorAppleScriptGateway_Prefix.h in Headers */,
+				4D35753D0A02687900647E88 /* NSApplicationScriptingAdditions.h in Headers */,
+				4D35753E0A02687900647E88 /* IOWarriorLib.h in Headers */,
+				4D35753F0A02687900647E88 /* IOWarriorPin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4D35753A0A02687900647E88 /* IOWarriorAppleScriptGateway */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D3575500A02687900647E88 /* Build configuration list for PBXNativeTarget "IOWarriorAppleScriptGateway" */;
+			buildPhases = (
+				4D35753B0A02687900647E88 /* Headers */,
+				4D3575400A02687900647E88 /* Resources */,
+				4D3575480A02687900647E88 /* Sources */,
+				4D35754D0A02687900647E88 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IOWarriorAppleScriptGateway;
+			productInstallPath = "$(HOME)/Applications";
+			productName = IOWarriorAppleScriptGateway;
+			productReference = 4D3575540A02687900647E88 /* IOWarriorAppleScriptGateway.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 4D8FB7BE0A02217E0057770E /* Build configuration list for PBXProject "IOWarriorAppleScriptGateway" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* IOWarriorAppleScriptGateway */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4D35753A0A02687900647E88 /* IOWarriorAppleScriptGateway */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4D3575400A02687900647E88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D3575410A02687900647E88 /* MainMenu.nib in Resources */,
+				4D3575420A02687900647E88 /* InfoPlist.strings in Resources */,
+				4D3575430A02687900647E88 /* IOWarriorSuite.scriptSuite in Resources */,
+				4D3575440A02687900647E88 /* IOWarriorSuite.scriptTerminology in Resources */,
+				4D3575450A02687900647E88 /* IOWarriorInterface0Test.scpt in Resources */,
+				4D3575460A02687900647E88 /* IOWarriorInterface1Test.scpt in Resources */,
+				4D3575470A02687900647E88 /* IOWarriorPinAccessTest.scpt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4D3575480A02687900647E88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D3575490A02687900647E88 /* main.m in Sources */,
+				4D35754A0A02687900647E88 /* NSApplicationScriptingAdditions.m in Sources */,
+				4D35754B0A02687900647E88 /* IOWarriorPin.m in Sources */,
+				4D35754C0A02687900647E88 /* IOWarriorLib.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		4DF2127A03D84137000A9090 /* IOWarriorSuite.scriptTerminology */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DF2127B03D84137000A9090 /* English */,
+			);
+			name = IOWarriorSuite.scriptTerminology;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4D3575510A02687900647E88 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IOWarriorAppleScriptGateway_Prefix.h;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-IOWarriorAppleScriptGateway.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = IOWarriorAppleScriptGateway;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		4D3575520A02687900647E88 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IOWarriorAppleScriptGateway_Prefix.h;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-IOWarriorAppleScriptGateway.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = IOWarriorAppleScriptGateway;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		4D8FB7BF0A02217E0057770E /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+			};
+			name = Development;
+		};
+		4D8FB7C00A02217E0057770E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+			};
+			name = Deployment;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4D3575500A02687900647E88 /* Build configuration list for PBXNativeTarget "IOWarriorAppleScriptGateway" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D3575510A02687900647E88 /* Development */,
+				4D3575520A02687900647E88 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		4D8FB7BE0A02217E0057770E /* Build configuration list for PBXProject "IOWarriorAppleScriptGateway" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D8FB7BF0A02217E0057770E /* Development */,
+				4D8FB7C00A02217E0057770E /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

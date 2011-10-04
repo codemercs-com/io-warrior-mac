@@ -1,0 +1,21 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {doPlay = id; }; 
+            CLASS = MyDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                documentWindow = id; 
+                downloadProgress = id; 
+                downloadStatus = id; 
+                keyDataFileName = id; 
+                keyboardConnected = id; 
+                keyboardType = id; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = MySound; LANGUAGE = ObjC; SUPERCLASS = Sound; }
+    ); 
+    IBVersion = 1; 
+}

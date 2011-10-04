@@ -1,0 +1,528 @@
+2004-11-22 17:33  ilja
+
+	[no log message]
+
+2004-06-22 10:31  ilja
+
+	fixed AppleScript Gateway
+
+2004-06-18 01:52  ilja
+
+	basic support for multiple devices in LEDText example
+
+2004-06-16 01:08  ilja
+
+	converted BlinkenWarrior to xcode
+
+2004-06-16 00:59  ilja
+
+	added BlinkenWarrior Example
+
+2004-06-16 00:44  ilja
+
+	added IOWarriorLEDText example
+
+2004-05-04 02:00  ilja
+
+	changes for version 1.0.5
+
+2004-05-04 01:32  ilja
+
+	fixed crasher when trying to retain nil device serial number
+
+2004-02-25 22:52  ilja
+
+	added string support for device serial numbers
+
+2004-02-25 22:25  ilja
+
+	IOWarriorLib.c removed
+
+2004-02-04 19:14  ilja
+
+	fixed wrong interfaceType increment in IOWarriorDiscoverDevices
+
+2003-11-19 20:57  ilja
+
+	removed 40 from function names
+
+2003-11-07 22:22  ilja
+
+	.:
+
+2003-11-07 22:22  ilja
+
+	Initial revision
+
+2003-11-07 22:11  ilja
+
+	.:
+
+2003-11-07 22:11  ilja
+
+	Initial revision
+
+2003-11-07 21:48  ilja
+
+	.:
+
+2003-11-07 21:48  ilja
+
+	Initial revision
+
+2003-11-07 21:30  ilja
+
+	.:
+
+2003-11-07 21:30  ilja
+
+	Initial revision
+
+2003-11-07 21:22  ilja
+
+	.:
+
+2003-11-07 21:22  ilja
+
+	Initial revision
+
+2003-11-07 21:04  ilja
+
+	.:
+
+2003-11-07 21:04  ilja
+
+	Initial revision
+
+2003-11-07 18:09  ilja
+
+	.:
+
+2003-11-07 18:09  ilja
+
+	Initial revision
+
+2003-11-07 16:57  ilja
+
+	.:
+
+2003-11-07 16:57  ilja
+
+	Initial revision
+
+2003-11-07 16:49  ilja
+
+	.:
+
+2003-11-07 16:49  ilja
+
+	Initial revision
+
+2003-11-07 15:47  ilja
+
+	.:
+
+2003-11-07 15:47  ilja
+
+	Initial revision
+
+2003-11-06 18:15  ilja
+
+	.:
+
+2003-11-06 18:15  ilja
+
+	Initial revision
+
+2003-11-05 14:28  ilja
+
+	.:
+
+2003-11-05 14:28  ilja
+
+	Initial revision
+
+2003-11-05 14:17  ilja
+
+	.:
+
+2003-11-05 14:17  ilja
+
+	Initial revision
+
+2003-11-05 13:30  ilja
+
+	.:
+
+2003-11-05 13:30  ilja
+
+	Initial revision
+
+2003-11-05 12:26  ilja
+
+	.:
+
+2003-11-05 12:26  ilja
+
+	Initial revision
+
+2003-11-05 12:10  ilja
+
+	.:
+
+2003-11-05 12:10  ilja
+
+	Initial revision
+
+2003-11-05 12:07  ilja
+
+	.:
+
+2003-11-05 12:07  ilja
+
+	Initial revision
+
+2003-11-05 11:27  ilja
+
+	.:
+
+2003-11-05 11:27  ilja
+
+	Initial revision
+
+2003-11-05 00:01  ilja
+
+	.:
+
+2003-11-05 00:01  ilja
+
+	Initial revision
+
+2003-11-04 23:16  ilja
+
+	.:
+
+2003-11-04 23:16  ilja
+
+	Initial revision
+
+2003-11-04 23:12  ilja
+
+	.:
+
+2003-11-04 23:12  ilja
+
+	Initial revision
+
+2003-11-04 15:56  ilja
+
+	.:
+
+2003-11-04 15:56  ilja
+
+	Initial revision
+
+2003-11-04 15:46  ilja
+
+	.:
+
+2003-11-04 15:46  ilja
+
+	Initial revision
+
+2003-11-04 14:58  ilja
+
+	.:
+
+2003-11-04 14:58  ilja
+
+	Initial revision
+
+2003-11-04 14:23  ilja
+
+	.:
+
+2003-11-04 14:23  ilja
+
+	Initial revision
+
+2003-10-16 15:55  ilja
+
+	.:
+
+2003-10-16 15:55  ilja
+
+	Initial revision
+
+2003-10-16 14:00  ilja
+
+	.:
+
+2003-10-16 14:00  ilja
+
+	Initial revision
+
+2003-10-12 16:05  ilja
+
+	.:
+
+2003-10-12 16:05  ilja
+
+	Initial revision
+
+2003-10-09 19:15  ilja
+
+	.:
+
+2003-10-09 19:15  ilja
+
+	Initial revision
+
+2003-10-09 16:20  ilja
+
+	.:
+
+2003-10-09 16:20  ilja
+
+	Initial revision
+
+2003-10-09 15:08  ilja
+
+	.:
+
+2003-10-09 15:08  ilja
+
+	Initial revision
+
+2003-09-09 17:30  ilja
+
+	.:
+
+2003-09-09 17:30  ilja
+
+	Initial revision
+
+2003-09-02 15:26  ilja
+
+	.:
+
+2003-09-02 15:26  ilja
+
+	Initial revision
+
+2003-03-27 21:23  ilja
+
+	.:
+
+2003-03-27 21:23  ilja
+
+	Initial revision
+
+2003-03-26 22:59  ilja
+
+	.:
+
+2003-03-26 22:59  ilja
+
+	Initial revision
+
+2003-03-11 19:49  ilja
+
+	.:
+
+2003-03-11 19:49  ilja
+
+	Initial revision
+
+2003-03-11 19:34  ilja
+
+	.:
+
+2003-03-11 19:34  ilja
+
+	Initial revision
+
+2003-03-10 21:43  ilja
+
+	.:
+
+2003-03-10 21:43  ilja
+
+	Initial revision
+
+2003-03-10 21:34  ilja
+
+	.:
+
+2003-03-10 21:34  ilja
+
+	Initial revision
+
+2003-02-17 00:12  ilja
+
+	.:
+
+2003-02-17 00:12  ilja
+
+	Initial revision
+
+2003-02-13 19:23  ilja
+
+	.:
+
+2003-02-13 19:23  ilja
+
+	Initial revision
+
+2003-02-13 18:17  ilja
+
+	.:
+
+2003-02-13 18:17  ilja
+
+	Initial revision
+
+2003-02-09 19:30  ilja
+
+	.:
+
+2003-02-09 19:30  ilja
+
+	Initial revision
+
+2003-02-09 19:15  ilja
+
+	.:
+
+2003-02-09 19:15  ilja
+
+	Initial revision
+
+2003-02-09 18:16  ilja
+
+	.:
+
+2003-02-09 18:16  ilja
+
+	Initial revision
+
+2003-01-17 16:42  ilja
+
+	.:
+
+2003-01-17 16:42  ilja
+
+	Initial revision
+
+2003-01-17 13:56  ilja
+
+	.:
+
+2003-01-17 13:56  ilja
+
+	Initial revision
+
+2003-01-13 20:07  ilja
+
+	.:
+
+2003-01-13 20:07  ilja
+
+	Initial revision
+
+2003-01-13 19:32  ilja
+
+	.:
+
+2003-01-13 19:32  ilja
+
+	Initial revision
+
+2003-01-10 15:22  ilja
+
+	.:
+
+2003-01-10 15:22  ilja
+
+	Initial revision
+
+2002-10-28 10:30  ilja
+
+	.:
+
+2002-10-28 10:30  ilja
+
+	Initial revision
+
+2002-10-28 10:19  ilja
+
+	.:
+
+2002-10-28 10:19  ilja
+
+	Initial revision
+
+2002-08-20 13:52  ilja
+
+	.:
+
+2002-08-20 13:52  ilja
+
+	Initial revision
+
+2002-08-20 13:39  ilja
+
+	.:
+
+2002-08-20 13:39  ilja
+
+	Initial revision
+
+2002-08-20 13:09  ilja
+
+	.:
+
+2002-08-20 13:09  ilja
+
+	Initial revision
+
+2002-03-26 12:35  ilja
+
+	.:
+
+2002-03-26 12:35  ilja
+
+	Initial revision
+
+2002-02-17 07:02  ilja
+
+	.:
+
+2002-02-17 07:02  ilja
+
+	Initial revision
+
+2002-02-16 12:26  ilja
+
+	.:
+
+2002-02-16 12:26  ilja
+
+	Initial revision
+
+2002-02-14 08:55  ilja
+
+	.:
+
+2002-02-14 08:55  ilja
+
+	Initial revision
+
+2002-02-12 04:24  ilja
+
+	.:
+
+2002-02-12 04:24  ilja
+
+	Initial revision
+

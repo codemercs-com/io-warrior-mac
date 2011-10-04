@@ -1,0 +1,1 @@
+tell application "IOWarriorAppleScriptGateway"	set the value of every pin to 0	set the value of pin 32 to 1	set the value of pin 31 to 1	get the value of every pin	set the value of pin 30 to 0	set the value of pin 29 to 0	get the value of pin 31end tell

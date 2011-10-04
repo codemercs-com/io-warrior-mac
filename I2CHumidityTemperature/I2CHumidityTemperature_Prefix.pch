@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'I2CHumidityTemperature' target in the 'I2CHumidityTemperature' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

@@ -1,0 +1,4 @@
+{
+    IBClasses = ({CLASS = BlinkenWarriorAppDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }); 
+    IBVersion = 1; 
+}

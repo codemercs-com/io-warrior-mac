@@ -1,0 +1,14 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {
+            ACTIONS = {doCancel = id; doOK = id; doTestScript = id; }; 
+            CLASS = ScriptPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; scriptController = NSObjectController; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

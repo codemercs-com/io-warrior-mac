@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>commandSets</key>
+	<dict>
+		<key>DVD Player</key>
+		<array/>
+		<key>iTunes</key>
+		<array>
+                    <dict>
+                            <key>IRCommand</key>
+                            <integer>13</integer>
+                            <key>device</key>
+                            <integer>0</integer>
+                            <key>repeats</key>
+                            <false/>
+                            <key>repetitionThreshold</key>
+                            <integer>3</integer>
+                            <key>script</key>
+                            <string>iTunes:playpause</string>
+                    </dict>
+                    <dict>
+                            <key>IRCommand</key>
+                            <integer>32</integer>
+                            <key>device</key>
+                            <integer>0</integer>
+                            <key>repeats</key>
+                            <false/>
+                            <key>repetitionThreshold</key>
+                            <integer>3</integer>
+                            <key>script</key>
+                            <string>iTunes:next track</string>
+                    </dict>
+                    <dict>
+                            <key>IRCommand</key>
+                            <integer>33</integer>
+                            <key>device</key>
+                            <integer>0</integer>
+                            <key>repeats</key>
+                            <false/>
+                            <key>repetitionThreshold</key>
+                            <integer>3</integer>
+                            <key>script</key>
+                            <string>iTunes:back track</string>
+                    </dict>
+                    <dict>
+                            <key>IRCommand</key>
+                            <integer>16</integer>
+                            <key>device</key>
+                            <integer>0</integer>
+                            <key>repeats</key>
+                            <true/>
+                            <key>repetitionThreshold</key>
+                            <integer>5</integer>
+                            <key>script</key>
+                            <string>iTunes:volume up</string>
+                    </dict>
+                    <dict>
+                            <key>IRCommand</key>
+                            <integer>17</integer>
+                            <key>device</key>
+                            <integer>0</integer>
+                            <key>repeats</key>
+                            <true/>
+                            <key>repetitionThreshold</key>
+                            <integer>5</integer>
+                            <key>script</key>
+                            <string>iTunes:volume down</string>
+                    </dict>
+            </array>
+        </dict>
+	<key>scripts</key>
+	<array>
+		<dict>
+			<key>source</key>
+			<string>tell application "iTunes" to playpause</string>
+			<key>name</key>
+			<string>iTunes:playpause</string>
+		</dict>
+		<dict>
+			<key>source</key>
+			<string>tell application "iTunes" to next track</string>
+			<key>name</key>
+			<string>iTunes:next track</string>
+		</dict>
+		<dict>
+			<key>source</key>
+			<string>tell application "iTunes" to back track</string>
+			<key>name</key>
+			<string>iTunes:back track</string>
+		</dict>
+		<dict>
+			<key>source</key>
+			<string>tell application "iTunes"
+	if (the sound volume &lt;= 90)
+		set the sound volume to (the sound volume + 10)
+	end if
+end tell
+</string>
+			<key>name</key>
+			<string>iTunes:volume up</string>
+		</dict>
+		<dict>
+			<key>source</key>
+			<string>tell application "iTunes"
+	if (the sound volume &gt; 10)
+		set the sound volume to (the sound volume -10)
+	end if
+end tell
+</string>
+			<key>name</key>
+			<string>iTunes:volume down</string>
+		</dict>
+	</array>
+</dict>
+</plist>

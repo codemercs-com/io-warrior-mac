@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addMacro = id; 
+                clearLogEntries = id; 
+                closeInterface = id; 
+                deleteMacro = id; 
+                doRead = id; 
+                doWrite = id; 
+                duplicateCheckboxClicked = id; 
+                interfacePopupChanged = id; 
+                macroPopupChanged = id; 
+                resetReportValues = id; 
+            }; 
+            CLASS = IOWarriorWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                addMacroButton = NSButton; 
+                ignoreDuplicatesCheckBox = NSButton; 
+                interfacePopup = NSPopUpButton; 
+                logTable = NSTableView; 
+                macroPopup = NSPopUpButton; 
+                readButton = NSButton; 
+                reportIDField = NSTextField; 
+                window = NSWindow; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

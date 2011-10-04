@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {doCancel = id; doOK = id; }; 
+            CLASS = MacroNamePanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {nameField = NSTextField; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

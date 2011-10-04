@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {doCancel = id; doOK = id; }; 
+            CLASS = CommandPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                commandPopup = NSPopUpButton; 
+                delegate = id; 
+                devicePopup = NSPopUpButton; 
+                repeatsCheckBox = NSButton; 
+                scriptPopup = NSPopUpButton; 
+                thresholdField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><style type="text/css"><!--a:link {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:visited {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:active {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:hover {text-decoration: underline; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}h4 {text-decoration: none; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; size: tiny; font-weight: bold}--></style><head>
+    <title>IOWarriorLib</title>
+	 <meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff">
+<h1><font face="Geneva,Arial,Helvtica">IOWarriorLib</font></h1><br>
+<h2>Discussion</h2>
+The IOWarrior Library provides convinience funtions to access the IOWarrior under Mac OS X 10.2.3 or later. It simplifies the process of finding and accessing IOWarrior devices .
+<br><br>
+You will need to link your software against the IOKit.framework in order to use this source code.
+<br><br>
+Make sure you are calling IOWarriorInit before calling any of the other functions.
+<br><br>
+If you are running Mac OS X 10.2.3, make sure you have updated your Developer Tools at least to the December 2002 version. 
+<br><br>
+Binaries compiled on Mac OS X 10.3 using this version of the IOWarrior Library will not work on earlier systems. However, binaries on 10.2.3 should also work on 10.2.3 or later. If you are using 10.3 and want to develop appplicaton that run on 10.2.x, too, select the 10.2.7 Cross Development SDK in XCode targets inspector. You have to install the additional SDK when installing the Mac OS X Developer Tools.
+<br><br>
+$Id: IOWarriorLib.h,v 1.3 2004/02/25 21:25:02 ilja Exp $
+<br><br>
+ <hr><br><h2>Functions</h2>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorCount">IOWarriorCount</a></h2>
+</td></tr></table><hr>Returns the number of interfaces connected to this system.
+
+<blockquote><pre><tt>int IOWarriorCountInterfaces (void);</tt><br>
+</pre></blockquote>
+<dl><dt><i>function result</i></dt><dd>The number of IOWarrior interfaces. 
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorFirstInterfaceOfType">IOWarriorFirstInterfaceOfType</a></h2>
+</td></tr></table><hr>Returns the first IOWarrior interface of type inInterfaceType. 
+<br><br>
+
+<blockquote><pre><tt>IOWarriorHIDDeviceInterface** IOWarriorFirstInterfaceOfType (
+&nbsp;&nbsp;&nbsp;&nbsp;int inInterfaceType
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to get the first discovered interface of a certain type. See the Constants definitions for a list of supported IOWarrior interface types. The result of this function can be used as paramter for IOWarriorWriteToInterface or IOWarriorReadFromInterface. Returns NULL if no interface matching inInterfaceType could be found.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inInterfaceType</em></tt></dt><dd>The type of the interface to be returned.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns an interface object if found, NULL otherwise.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorInit">IOWarriorInit</a></h2>
+</td></tr></table><hr>Initializes the IOWarrior library. Call this before calling any other functions.
+
+<blockquote><pre><tt>int IOWarriorInit (void);</tt><br>
+</pre></blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if successfull, otherwise return value is different from 0.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorInterfaceListNodeAtIndex">IOWarriorInterfaceListNodeAtIndex</a></h2>
+</td></tr></table><hr>Returns the list node element at index inIndex.
+
+<blockquote><pre><tt>IOWarriorListNode* IOWarriorInterfaceListNodeAtIndex (
+&nbsp;&nbsp;&nbsp;&nbsp;int inIndex
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to obtain more information (serial number, device type) about an interface of an IOWarrior device.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inIndex</em></tt></dt><dd>The index of the desired list node. First list node has index 0.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>A pointer to a structure of type IOWarriorListNode.  NULL if index is out of bounds.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorIsPresent">IOWarriorIsPresent</a></h2>
+</td></tr></table><hr>Use this function to too see of an IOWarrior device is present.
+
+<blockquote><pre><tt>int IOWarriorIsPresent (void);</tt><br>
+</pre></blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 1 if at least one IOWarrior is connected to this system. Returns 0 if no IOWarrior device could be discovered.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorReadFromInterface">IOWarriorReadFromInterface</a></h2>
+</td></tr></table><hr>Reads data from a specific interface.
+
+<blockquote><pre><tt>int IOWarriorReadFromInterface (
+&nbsp;&nbsp;&nbsp;&nbsp;IOWarriorHIDDeviceInterface** inInterface,
+&nbsp;&nbsp;&nbsp;&nbsp;int inReportID,
+&nbsp;&nbsp;&nbsp;&nbsp;int inSize,
+&nbsp;&nbsp;&nbsp;&nbsp;void* outData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to read a certain amount of data associated with a certain reportID to a specific interface.
+<br><br>
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inInterface</em></tt></dt><dd>The interface the data should be read from. Pass the ioWarriorHIDInterface member of an IOWarriorListNode struct.  This function will not get you the data sent in interrupt mode from interface 1. Instead you will receive a copy of the last HID report sent in interrupt mode. Use IOWarriorSetInterruptCallback to receive data received in interrupt mode.</dd>
+<dt><tt><em>inReportID</em></tt></dt><dd>The report ID of the request. See the IO Warrior Datasheet for the appropriate values.</dd>
+<dt><tt><em>inSize</em></tt></dt><dd>The size of the data to be read.</dd>
+<dt><tt><em>inData</em></tt></dt><dd>A pointer to a buffer thats at least inSize bytes long. Read data will be stored here.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if read operation was successful, returns an error code different from 0 otherwise.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorReadInterface0">IOWarriorReadInterface0</a></h2>
+</td></tr></table><hr>Reads 4 byte (32 bit) from interface 0 of the first IOWarrior 40 device connected to this system using a GetOutputReport request.
+
+<blockquote><pre><tt>int IOWarriorReadInterface0 (
+&nbsp;&nbsp;&nbsp;&nbsp;void *outData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>outData</em></tt></dt><dd>A pointer to a buffer where the data should be stored. Buffer has to be at least 4 bytes long</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if reading operation was successfull. Returns a value different from 0 otherwise.
+</dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorReadInterface1">IOWarriorReadInterface1</a></h2>
+</td></tr></table><hr>Reads a 7 byte output report from interface 1 of the first IOWarrior 40 device connected to this system.
+This function won't work for interfaces 1 of an IOWarrior 40 on Mac OS X 10.2.x.
+<br><br>
+
+<blockquote><pre><tt>int IOWarriorReadInterface1 (
+&nbsp;&nbsp;&nbsp;&nbsp;int inReportID,
+&nbsp;&nbsp;&nbsp;&nbsp;void *outData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to obtain data from the IOWarrior when in special mode.  See the IOWarrior datasheet for details.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inReportID</em></tt></dt><dd>The report ID of the request. See the IO Warrior Datasheet for the appropriate values.</dd>
+<dt><tt><em>outData</em></tt></dt><dd>A pointer to a buffer where the data should be stored. Buffer has to be at least 7 bytes long</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if reading operation was successfull. Returns a value different from 0 otherwise.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorSetDeviceCallback">IOWarriorSetDeviceCallback</a></h2>
+</td></tr></table><hr>Sets the function to be called when IOWarrior devices ar added or removed. 
+
+<blockquote><pre><tt>void IOWarriorSetDeviceCallback (
+&nbsp;&nbsp;&nbsp;&nbsp;IOWarriorDeviceCallbackFunctionPtr inCallbackPtr,
+&nbsp;&nbsp;&nbsp;&nbsp;void* inRefCon
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to install a custom callback function. You function will be called whenever IOWarrior devices are added or removed from the system. You should invalidate any references to IOWarriorListNode structures you might have saved when your callback functions gets called. Be sure to call IOWarriorCountInterfaces at least once after you callback function was invoked before calling any other functions from the IOWarrior Library.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorSetInterruptCallback">IOWarriorSetInterruptCallback</a></h2>
+</td></tr></table><hr>Sets the function to be called when a report data is received on inInterface. 
+
+<blockquote><pre><tt>int IOWarriorSetInterruptCallback (
+&nbsp;&nbsp;&nbsp;&nbsp;IOWarriorHIDDeviceInterface** inInterface,
+&nbsp;&nbsp;&nbsp;&nbsp;void* inBuffer,
+&nbsp;&nbsp;&nbsp;&nbsp;UInt32 inBufferSize,
+&nbsp;&nbsp;&nbsp;&nbsp;IOHIDReportCallbackFunction inCallbackPtr,
+&nbsp;&nbsp;&nbsp;&nbsp;void* inRefCon
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to install a custom callback routine that gets invoked when data is received on interface inInterface. This function will only work when your application was compiled on Mac OS 10.3 or later and is running on Mac OS 10.3 or later. For earlier systems the implementation of the function is hidden from the compiler using preprocessor commands, because the system does not implement the required API calls.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inInterface</em></tt></dt><dd>The interface where your data arrives</dd>
+<dt><tt><em>inBuffer</em></tt></dt><dd>A buffer provided by the caller.</dd>
+<dt><tt><em>inBufferSize</em></tt></dt><dd>The size of inBuffer.</dd>
+<dt><tt><em>inCallbackPtr</em></tt></dt><dd>A pointer to your callback function. See IOHIDLib.h for more info.</dd>
+<dt><tt><em>inRefCon</em></tt></dt><dd>A reference value passed to your callback on invocation.</dd>
+</dl>
+</blockquote>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorWriteInterface0">IOWarriorWriteInterface0</a></h2>
+</td></tr></table><hr>Writes a 4 byte buffer (32 bit) to interface 0 of the first IOWarrior 40 devices using a SetOutputReport request.
+
+<blockquote><pre><tt>int IOWarriorWriteInterface0 (
+&nbsp;&nbsp;&nbsp;&nbsp;void *inData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>The first byte of the passed buffer becomes mapped to the pins of port 0, the second byte to the pins of port 1 and so on.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inData</em></tt></dt><dd>A pointer to the data being written. Should be at least 4 bytes long.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if writing operation was successfull. Returns a value different from 0 otherwise.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorWriteInterface1">IOWarriorWriteInterface1</a></h2>
+</td></tr></table><hr>Writes a 7 byte output report to interface 1 of the first IOWarrior 40 device connected to this system.
+
+<blockquote><pre><tt>int IOWarriorWriteInterface1 (
+&nbsp;&nbsp;&nbsp;&nbsp;int inReportID,
+&nbsp;&nbsp;&nbsp;&nbsp;void *inData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use the function to control IOWarrior special modes (like IIC and LCD mode) of the IOWarrior. See the IOWarrior datasheet for details.
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inReportID</em></tt></dt><dd>The report ID of the request. See the IO Warrior Datasheet for the appropriate values.</dd>
+<dt><tt><em>inData</em></tt></dt><dd>A pointer to the data being written. Should be at least 7 bytes long.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if writing operation was successfull. Returns a value different from 0 otherwise.
+ </dd></dl>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorWriteToInterface">IOWarriorWriteToInterface</a></h2>
+</td></tr></table><hr>Writes data to a specific interface.
+
+<blockquote><pre><tt>int IOWarriorWriteToInterface (
+&nbsp;&nbsp;&nbsp;&nbsp;IOWarriorHIDDeviceInterface** inInterface,
+&nbsp;&nbsp;&nbsp;&nbsp;int inSize,
+&nbsp;&nbsp;&nbsp;&nbsp;void* inData
+);</tt><br>
+</pre></blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Use this function to write to a certain amount of data associated with a certain reportID to a specific interface.
+<br><br>
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Parameter Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt><em>inInterface</em></tt></dt><dd>The interface the data should be written to. Pass the ioWarriorHIDInterface member of an IOWarriorListNode struct obtained earlier.</dd>
+<dt><tt><em>inSize</em></tt></dt><dd>The size of the data to be written.</dd>
+<dt><tt><em>inData</em></tt></dt><dd>A pointer to the data to be written. First byte is report id.</dd>
+</dl>
+</blockquote>
+<dl><dt><i>function result</i></dt><dd>Returns 0 if write operation was successful, returns an error code different from 0 otherwise.
+ </dd></dl>
+<h2>Typedefs</h2>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorCallbackFunctionPtr">IOWarriorCallbackFunctionPtr</a></h2>
+</td></tr></table><hr>A function pointer type for IOWarriors callback function.
+
+<blockquote><tt>typedef void (<b>*IOWarriorDeviceCallbackFunctionPtr</b>) (<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;void* inRefCon<BR>);</tt><br>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>A function pointer type for IOWarriors callback function, that gets called whenever an IOWarrior device is added or removed. You can install you own callback function using the IOWarriorSetCallback fucntion.
+ </p>
+<h2>Structs</h2>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorListNodeStruct">IOWarriorListNodeStruct</a></h2>
+</td></tr></table><hr><blockquote><pre>
+IONotificationPortRef GetNotificationPort ();
+
+
+struct IOWarriorListNodeStruct {
+    IONotificationPortRef GetNotificationPort ();
+    struct IOWarriorListNodeStruct
+    {
+    IOWarriorHIDDeviceInterface**   ioWarriorHIDInterface;      // IOKits interface object
+    struct                          IOWarriorListNodeStruct* nextNode;  // pointer to the next interface
+    CFStringRef            serialNumber;        // the device serial number
+    int                             interfaceType;        // the type of the interface
+    bool              interfaceOpen;          
+} ;
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>A structure implementing a linked list node. Used to keep track of all IOWarrior Interfaces
+connected to the system. You can use IOWarriorCountInterfaces and IOWarriorInterfaceListNodeAtIndex to iterate trough all interfaces.
+<br><br>
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Field Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt>ioWarriorHIDInterface</tt></dt><dd>Interface object for the systems IOKit</dd>
+<dt><tt>nextNode</tt></dt><dd>Pointer to the node in the interface list.</dd>
+<dt><tt>serialNumber</tt></dt><dd>The serial number of the interface.</dd>
+<dt><tt>interfaceType</tt></dt><dd>The type of the interface (kIOWarrior40Interface0, kIOWarrior40Interface1, ..) .</dd>
+<dt><tt>interfaceOpened</tt></dt><dd>Has the interface already been opened.</dd>
+</dl>
+</blockquote>
+<h2>#defines</h2>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior24Interface0">kIOWarrior24Interface0</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior24Interface0 2
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 24.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior24Interface1">kIOWarrior24Interface1</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior24Interface1 3
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 24.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior24PVInterface0">kIOWarrior24PVInterface0</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior24PVInterface0 6
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 24.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior24PVInterface1">kIOWarrior24PVInterface1</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior24PVInterface1 7
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 24.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior40Interface0">kIOWarrior40Interface0</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior40Interface0 0
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 40.</p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior40Interface1">kIOWarrior40Interface1</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior40Interface1 1
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 1 of an IOWarrior 40.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior56Interface0">kIOWarrior56Interface0</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior56Interface0 4
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 0 of an IOWarrior 56.
+ </p>
+<hr>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="kIOWarrior56Interface1">kIOWarrior56Interface1</a></h2>
+</td></tr></table><hr><blockquote><pre>
+#define kIOWarrior56Interface1 5
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>Interface type indentifier for an interface 1 of an IOWarrior 56.
+ </p>
+<p>(Last Updated 6/24/2008)
+</p></body></html>

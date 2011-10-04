@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><style type="text/css"><!--a:link {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:visited {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:active {text-decoration: none; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}a:hover {text-decoration: underline; font-family: Verdana, Geneva, Helvetica, Arial, sans-serif; font-size: small}h4 {text-decoration: none; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; size: tiny; font-weight: bold}--></style><head>
+    <title>Structs</title>
+	 <meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff">
+<h1><font face="Geneva,Arial,Helvtica">Structs</font></h1><br>
+<hr><a name="//apple_ref/c/tag/IOWarriorListNodeStruct"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorListNodeStruct">IOWarriorListNodeStruct</a></h2>
+</td></tr></table><hr><blockquote><pre>
+IONotificationPortRef GetNotificationPort ();
+
+
+struct IOWarriorListNodeStruct {
+    IONotificationPortRef GetNotificationPort ();
+    struct IOWarriorListNodeStruct
+    {
+    IOWarriorHIDDeviceInterface**   ioWarriorHIDInterface;      // IOKits interface object
+    struct                          IOWarriorListNodeStruct* nextNode;  // pointer to the next interface
+    CFStringRef            serialNumber;        // the device serial number
+    int                             interfaceType;        // the type of the interface
+    bool              interfaceOpen;          
+} ;
+</pre>
+</blockquote>
+<h5><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5><p>A structure implementing a linked list node. Used to keep track of all IOWarrior Interfaces
+connected to the system. You can use IOWarriorCountInterfaces and IOWarriorInterfaceListNodeAtIndex to iterate trough all interfaces.
+<br><br>
+</p>
+<h5><font face="Lucida Grande,Helvetica,Arial">Field Descriptions</font></h5>
+<blockquote>
+<dl>
+<dt><tt>ioWarriorHIDInterface</tt></dt><dd>Interface object for the systems IOKit</dd>
+<dt><tt>nextNode</tt></dt><dd>Pointer to the node in the interface list.</dd>
+<dt><tt>serialNumber</tt></dt><dd>The serial number of the interface.</dd>
+<dt><tt>interfaceType</tt></dt><dd>The type of the interface (kIOWarrior40Interface0, kIOWarrior40Interface1, ..) .</dd>
+<dt><tt>interfaceOpened</tt></dt><dd>Has the interface already been opened.</dd>
+</dl>
+</blockquote>
+<p>(Last Updated 6/24/2008)
+</p></body></html>

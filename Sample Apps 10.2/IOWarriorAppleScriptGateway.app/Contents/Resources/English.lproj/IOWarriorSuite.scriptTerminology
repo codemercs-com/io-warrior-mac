@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Classes</key>
+	<dict>
+		<key>IOWarriorPin</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>value</key>
+				<dict>
+					<key>Description</key>
+					<string>The current value of the pin.</string>
+					<key>Name</key>
+					<string>value</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>One of IOWarriors 32 general purpose pins. Pin 1 maps to pin 0 of port 0, Pin 32 to pin 7 of port 3.</string>
+			<key>Name</key>
+			<string>pin</string>
+			<key>PluralName</key>
+			<string>pins</string>
+		</dict>
+		<key>NSApplication</key>
+		<dict>
+			<key>Description</key>
+			<string>The main application object.</string>
+			<key>Name</key>
+			<string>application</string>
+			<key>PluralName</key>
+			<string>applications</string>
+		</dict>
+	</dict>
+	<key>Commands</key>
+	<dict>
+		<key>IsIOWarriorPresent</key>
+		<dict>
+			<key>Description</key>
+			<string>Returns if an IOWarrior device could be found.</string>
+			<key>Name</key>
+			<string>IsIOWarriorPresent</string>
+		</dict>
+		<key>ReadBufferSize</key>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Description</key>
+			<string>Returns the number of interface0 samples contained in the read buffer.</string>
+			<key>Name</key>
+			<string>ReadBufferSize</string>
+		</dict>
+		<key>ReadInterface0</key>
+		<dict>
+			<key>Description</key>
+			<string>Reads a list of four bytes from interface 0.</string>
+			<key>Name</key>
+			<string>ReadInterface0</string>
+		</dict>
+		<key>ReadInterface1</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>reportId</key>
+				<dict>
+					<key>Description</key>
+					<string>The id number of the report to be requested from interface 1.</string>
+					<key>Name</key>
+					<string>reportId</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Requests a report with a ID reportID from interface 1 of the IOWarrior. Returns a list of seven numbers</string>
+			<key>Name</key>
+			<string>ReadInterface1</string>
+		</dict>
+		<key>StartBufferedReading</key>
+		<dict>
+			<key>Description</key>
+			<string>After command is received by the application, interface 0 will be read every 100 milliseconds. Read data is stored in a read buffer, but only if its different from the previously read data.</string>
+			<key>Name</key>
+			<string>StartBufferedReading</string>
+		</dict>
+		<key>StopBufferedReading</key>
+		<dict>
+			<key>Description</key>
+			<string>Stops continous reading of interface 0. Read data that that has not been requested will get discarded at this point.</string>
+			<key>Name</key>
+			<string>StopBufferedReading</string>
+		</dict>
+		<key>WriteInterface0</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>port0</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 0. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port0</string>
+				</dict>
+				<key>port1</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 1. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port1</string>
+				</dict>
+				<key>port2</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 2. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port2</string>
+				</dict>
+				<key>port3</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 3. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port3</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Writes four bytes to interface 0.</string>
+			<key>Name</key>
+			<string>WriteInterface0</string>
+		</dict>
+		<key>WriteInterface1</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>byte0</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 0 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte0</string>
+				</dict>
+				<key>byte1</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 1 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte1</string>
+				</dict>
+				<key>byte2</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 2 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte2</string>
+				</dict>
+				<key>byte3</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 3 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte3</string>
+				</dict>
+				<key>byte4</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 4 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte4</string>
+				</dict>
+				<key>byte5</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 5 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte5</string>
+				</dict>
+				<key>byte6</key>
+				<dict>
+					<key>Description</key>
+					<string>Byte 6 of the report data. If omitted, byte will be set to zero.</string>
+					<key>Name</key>
+					<string>byte6</string>
+				</dict>
+				<key>reportId</key>
+				<dict>
+					<key>Description</key>
+					<string>The id number of the report to be written to interface 1.</string>
+					<key>Name</key>
+					<string>reportId</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Writes a 7-byte output report to interface 1.</string>
+			<key>Name</key>
+			<string>WriteInterface1</string>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>This suite includes the commands supported by the IOWarriorAppleScriptGateway Application.</string>
+	<key>Name</key>
+	<string>IOWarriorSuite</string>
+</dict>
+</plist>

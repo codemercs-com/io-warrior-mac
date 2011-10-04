@@ -1,0 +1,19 @@
+r46 | ilja | 2006-09-28 18:54:56 +0200 (Do, 28 Sep 2006) | 1 line
+
+Added Graphic LCD sample for IOWarrior 56
+--
+r45 | ilja | 2006-09-21 14:48:34 +0200 (Do, 21 Sep 2006) | 1 line
+
+AppleScript Gateway now support IOWarrior56
+--
+r44 | ilja | 2006-09-20 13:18:50 +0200 (Mi, 20 Sep 2006) | 1 line
+
+Added IOWarrior24 thermometer sample
+--
+r43 | ilja | 2006-08-01 21:59:33 +0200 (Di, 01 Aug 2006) | 1 line
+
+IOWarrior24IRTest: remove .xcode file
+--
+r41 | ilja | 2006-05-10 21:40:58 +0200 (Mi, 10 Mai 2006) | 1 line
+
+IOWarrior: added support for IOWarrior56 and IOWarrior24 PV

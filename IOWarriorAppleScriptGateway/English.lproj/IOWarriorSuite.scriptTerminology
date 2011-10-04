@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Classes</key>
+	<dict>
+		<key>IOWarriorPin</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>value</key>
+				<dict>
+					<key>Description</key>
+					<string>The current value of the pin.</string>
+					<key>Name</key>
+					<string>value</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>One of IOWarriors 32 general purpose pins. Pin 1 maps to pin 0 of port 0, Pin 32 to pin 7 of port 3.</string>
+			<key>Name</key>
+			<string>pin</string>
+			<key>PluralName</key>
+			<string>pins</string>
+		</dict>
+		<key>NSApplication</key>
+		<dict>
+			<key>Description</key>
+			<string>The main application object.</string>
+			<key>Name</key>
+			<string>application</string>
+			<key>PluralName</key>
+			<string>applications</string>
+		</dict>
+	</dict>
+	<key>Commands</key>
+	<dict>
+		<key>IsIOWarriorPresent</key>
+		<dict>
+			<key>Description</key>
+			<string>Returns if an IOWarrior device could be found.</string>
+			<key>Name</key>
+			<string>IsIOWarriorPresent</string>
+		</dict>
+		<key>ReadBufferSize</key>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Description</key>
+			<string>Returns the number of interface0 samples contained in the read buffer.</string>
+			<key>Name</key>
+			<string>ReadBufferSize</string>
+		</dict>
+		<key>ReadInterface0</key>
+		<dict>
+			<key>Description</key>
+			<string>Reads a list of four bytes from interface 0.</string>
+			<key>Name</key>
+			<string>ReadInterface0</string>
+		</dict>
+		<key>ReadInterface1</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>reportId</key>
+				<dict>
+					<key>Description</key>
+					<string>The id number of the report to be requested from interface 1.</string>
+					<key>Name</key>
+					<string>reportId</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Requests a report with a ID reportID from interface 1 of the IOWarrior. Returns a list of seven numbers</string>
+			<key>Name</key>
+			<string>ReadInterface1</string>
+		</dict>
+		<key>StartBufferedReading</key>
+		<dict>
+			<key>Description</key>
+			<string>After command is received by the application, interface 0 will be read every 100 milliseconds. Read data is stored in a read buffer, but only if its different from the previously read data.</string>
+			<key>Name</key>
+			<string>StartBufferedReading</string>
+		</dict>
+		<key>StopBufferedReading</key>
+		<dict>
+			<key>Description</key>
+			<string>Stops continous reading of interface 0. Read data that that has not been requested will get discarded at this point.</string>
+			<key>Name</key>
+			<string>StopBufferedReading</string>
+		</dict>
+		<key>WriteInterface0</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>port0</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 0. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port0</string>
+				</dict>
+				<key>port1</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 1. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port1</string>
+				</dict>
+				<key>port2</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 2. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port2</string>
+				</dict>
+				<key>port3</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 3. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port3</string>
+				</dict>
+				<key>port4</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 4. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port4</string>
+				</dict>
+				<key>port5</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 5. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port5</string>
+				</dict>
+				<key>port6</key>
+				<dict>
+					<key>Description</key>
+					<string>The byte to be written to port 6. If omitted, port pins will be set to zero.</string>
+					<key>Name</key>
+					<string>port6</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Writes four bytes to interface 0.</string>
+			<key>Name</key>
+			<string>WriteInterface0</string>
+		</dict>
+		<key>WriteInterface1</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>byte0</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 0 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte0</string>
+</dict>
+<key>byte1</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 1 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte1</string>
+</dict>
+<key>byte2</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 2 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte2</string>
+</dict>
+<key>byte3</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 3 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte3</string>
+</dict>
+<key>byte4</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 4 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte4</string>
+</dict>
+<key>byte5</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 5 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte5</string>
+</dict>
+<key>byte6</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 6 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte6</string>
+</dict>
+<key>byte7</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 7 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte7</string>
+</dict>
+<key>byte8</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 8 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte8</string>
+</dict>
+<key>byte9</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 9 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte9</string>
+</dict>
+<key>byte10</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 10 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte10</string>
+</dict>
+<key>byte11</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 11 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte11</string>
+</dict>
+<key>byte12</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 12 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte12</string>
+</dict>
+<key>byte13</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 13 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte13</string>
+</dict>
+<key>byte14</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 14 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte14</string>
+</dict>
+<key>byte15</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 15 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte15</string>
+</dict>
+<key>byte16</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 16 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte16</string>
+</dict>
+<key>byte17</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 17 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte17</string>
+</dict>
+<key>byte18</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 18 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte18</string>
+</dict>
+<key>byte19</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 19 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte19</string>
+</dict>
+<key>byte20</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 20 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte20</string>
+</dict>
+<key>byte21</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 21 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte21</string>
+</dict>
+<key>byte22</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 22 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte22</string>
+</dict>
+<key>byte23</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 23 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte23</string>
+</dict>
+<key>byte24</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 24 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte24</string>
+</dict>
+<key>byte25</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 25 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte25</string>
+</dict>
+<key>byte26</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 26 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte26</string>
+</dict>
+<key>byte27</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 27 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte27</string>
+</dict>
+<key>byte28</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 28 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte28</string>
+</dict>
+<key>byte29</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 29 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte29</string>
+</dict>
+<key>byte30</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 30 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte30</string>
+</dict>
+<key>byte31</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 31 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte31</string>
+</dict>
+<key>byte32</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 32 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte32</string>
+</dict>
+<key>byte33</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 33 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte33</string>
+</dict>
+<key>byte34</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 34 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte34</string>
+</dict>
+<key>byte35</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 35 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte35</string>
+</dict>
+<key>byte36</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 36 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte36</string>
+</dict>
+<key>byte37</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 37 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte37</string>
+</dict>
+<key>byte38</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 38 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte38</string>
+</dict>
+<key>byte39</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 39 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte39</string>
+</dict>
+<key>byte40</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 40 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte40</string>
+</dict>
+<key>byte41</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 41 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte41</string>
+</dict>
+<key>byte42</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 42 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte42</string>
+</dict>
+<key>byte43</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 43 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte43</string>
+</dict>
+<key>byte44</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 44 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte44</string>
+</dict>
+<key>byte45</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 45 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte45</string>
+</dict>
+<key>byte46</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 46 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte46</string>
+</dict>
+<key>byte47</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 47 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte47</string>
+</dict>
+<key>byte48</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 48 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte48</string>
+</dict>
+<key>byte49</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 49 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte49</string>
+</dict>
+<key>byte50</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 50 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte50</string>
+</dict>
+<key>byte51</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 51 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte51</string>
+</dict>
+<key>byte52</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 52 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte52</string>
+</dict>
+<key>byte53</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 53 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte53</string>
+</dict>
+<key>byte54</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 54 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte54</string>
+</dict>
+<key>byte55</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 55 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte55</string>
+</dict>
+<key>byte56</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 56 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte56</string>
+</dict>
+<key>byte57</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 57 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte57</string>
+</dict>
+<key>byte58</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 58 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte58</string>
+</dict>
+<key>byte59</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 59 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte59</string>
+</dict>
+<key>byte60</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 60 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte60</string>
+</dict>
+<key>byte61</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 61 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte61</string>
+</dict>
+<key>byte62</key>
+<dict>
+	<key>Description</key>
+	<string>Byte 62 of the report data. If omitted, byte will be set to zero.</string>
+	<key>Name</key>
+	<string>byte62</string>
+</dict>				<key>reportId</key>
+				<dict>
+					<key>Description</key>
+					<string>The id number of the report to be written to interface 1.</string>
+					<key>Name</key>
+					<string>reportId</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Writes a 7-byte output report to interface 1.</string>
+			<key>Name</key>
+			<string>WriteInterface1</string>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>This suite includes the commands supported by the IOWarriorAppleScriptGateway Application.</string>
+	<key>Name</key>
+	<string>IOWarriorSuite</string>
+</dict>
+</plist>

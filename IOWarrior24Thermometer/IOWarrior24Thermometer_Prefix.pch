@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'IOWarrior24Thermometer' target in the 'IOWarrior24Thermometer' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

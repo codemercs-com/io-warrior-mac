@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppleEventCode</key>
+	<string>iWrS</string>
+	<key>Classes</key>
+	<dict>
+		<key>IOWarriorPin</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>pinn</string>
+			<key>Attributes</key>
+			<dict>
+				<key>value</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>valu</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+			</dict>
+			<key>Superclass</key>
+			<string>NSCoreSuite.AbstractObject</string>
+		</dict>
+		<key>NSApplication</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>capp</string>
+			<key>Attributes</key>
+			<dict/>
+			<key>Superclass</key>
+			<string>NSCoreSuite.NSApplication</string>
+			<key>SupportedCommands</key>
+			<dict>
+				<key>IsIOWarriorPresent</key>
+				<string>handleIsIOWarriorPresentCommand:</string>
+				<key>ReadBufferSize</key>
+				<string>handleReadBufferSize:</string>
+				<key>ReadInterface0</key>
+				<string>handleReadInterface0Command:</string>
+				<key>ReadInterface1</key>
+				<string>handleReadInterface1Command:</string>
+				<key>StartBufferedReading</key>
+				<string>startBufferedReading:</string>
+				<key>StopBufferedReading</key>
+				<string>stopBufferedReading:</string>
+				<key>WriteInterface0</key>
+				<string>handleWriteInterface0Command:</string>
+				<key>WriteInterface1</key>
+				<string>handleWriteInterface1Command:</string>
+			</dict>
+			<key>ToManyRelationships</key>
+			<dict>
+				<key>pins</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>pinn</string>
+					<key>ReadOnly</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>IOWarriorPin</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	<key>Commands</key>
+	<dict>
+		<key>IsIOWarriorPresent</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWpr</string>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>bool</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+		<key>ReadBufferSize</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWbz</string>
+			<key>Arguments</key>
+			<dict/>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>long</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+		<key>ReadInterface0</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWr0</string>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>list</string>
+			<key>Type</key>
+			<string>NSArray</string>
+		</dict>
+		<key>ReadInterface1</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWr1</string>
+			<key>Arguments</key>
+			<dict>
+				<key>reportId</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>reID</string>
+					<key>Optional</key>
+					<string>No</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+			</dict>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>list</string>
+			<key>Type</key>
+			<string>NSArray</string>
+		</dict>
+		<key>StartBufferedReading</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWst</string>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>long</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+		<key>StopBufferedReading</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWsp</string>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>long</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+		<key>WriteInterface0</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWw0</string>
+			<key>Arguments</key>
+			<dict>
+				<key>port0</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt0</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port1</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt1</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port2</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt2</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port3</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt3</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port4</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt4</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port5</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt5</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+				<key>port6</key>
+				<dict>
+					<key>AppleEventCode</key>
+					<string>prt6</string>
+					<key>Optional</key>
+					<string>YES</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+			</dict>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>long</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+		<key>WriteInterface1</key>
+		<dict>
+			<key>AppleEventCode</key>
+			<string>IWw1</string>
+			<key>Arguments</key>
+			<dict>
+				<key>byte0</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt0</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte1</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt1</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte2</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt2</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte3</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt3</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte4</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt4</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte5</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt5</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte6</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt6</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte7</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt7</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte8</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt8</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte9</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>byt9</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte10</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by10</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte11</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by11</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte12</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by12</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte13</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by13</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte14</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by14</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte15</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by15</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte16</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by16</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte17</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by17</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte18</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by18</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte19</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by19</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte20</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by20</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte21</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by21</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte22</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by22</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte23</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by23</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte24</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by24</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte25</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by25</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte26</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by26</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte27</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by27</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte28</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by28</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte29</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by29</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte30</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by30</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte31</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by31</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte32</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by32</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte33</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by33</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte34</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by34</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte35</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by35</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte36</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by36</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte37</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by37</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte38</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by38</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte39</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by39</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte40</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by40</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte41</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by41</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte42</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by42</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte43</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by43</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte44</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by44</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte45</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by45</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte46</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by46</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte47</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by47</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte48</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by48</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte49</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by49</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte50</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by50</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte51</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by51</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte52</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by52</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte53</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by53</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte54</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by54</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte55</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by55</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte56</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by56</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte57</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by57</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte58</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by58</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte59</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by59</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte60</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by60</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte61</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by61</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>
+<key>byte62</key>
+<dict>
+	<key>AppleEventCode</key>
+	<string>by62</string>
+	<key>Optional</key>
+	<string>YES</string>
+	<key>Type</key>
+	<string>NSNumber</string>
+</dict>				<key>reportId</key>
+								<dict>
+					<key>AppleEventCode</key>
+					<string>reID</string>
+					<key>Optional</key>
+					<string>No</string>
+					<key>Type</key>
+					<string>NSNumber</string>
+				</dict>
+			</dict>
+			<key>CommandClass</key>
+			<string>NSScriptCommand</string>
+			<key>ResultAppleEventCode</key>
+			<string>long</string>
+			<key>Type</key>
+			<string>NSNumber</string>
+		</dict>
+	</dict>
+	<key>Name</key>
+	<string>IOWarriorSuite</string>
+</dict>
+</plist>

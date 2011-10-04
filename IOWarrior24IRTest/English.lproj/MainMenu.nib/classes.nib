@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addCommandAction = id; 
+                addScriptAction = id; 
+                addSetAction = id; 
+                commandSetPopupChanged = id; 
+                doConfigureCommand = id; 
+                makeDefaultSetAction = id; 
+                removeCommmandAction = id; 
+                removeSetAction = id; 
+            }; 
+            CLASS = MainController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                commandTable = NSTableView; 
+                commandsController = NSArrayController; 
+                configureLastCommandButton = NSButton; 
+                lastCommandField = NSTextField; 
+                mainWindow = NSWindow; 
+                makeDefaultSetButton = NSButton; 
+                scriptTable = NSTableView; 
+                scriptsController = NSArrayController; 
+                setsController = NSArrayController; 
+                stateField = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
