@@ -7,11 +7,15 @@ void interruptCallback (void * target, IOReturn result, void * refcon,  void * s
 {
 	AppController	*controller = refcon;
 	unsigned char	*buffer = target;
-		
-	if (!(buffer[1] & 0x80) && 
-		buffer[0] == 2) // no error reported
+    
+    NSLog (@"interruptCallback called");
+
+	if ([controller isScanningForDevices]) // no error reported
 	{
-		[controller saveCurrentScanAddress];
+        if (buffer[0] == 3 && buffer[1] == 1)
+        {
+            [controller saveCurrentScanAddress];
+        }
 	}
 	else if (buffer[0] == 3) // response to read command
 	{
@@ -46,6 +50,8 @@ void IOWarriorCallback (void* inRefCon)
 
 @implementation AppController
 
+@synthesize isScanningForDevices;
+
 - (void) awakeFromNib
 {	
 	[mainTreeController addObserver:self
@@ -61,7 +67,12 @@ void IOWarriorCallback (void* inRefCon)
 - (void) applicationDidFinishLaunching:(NSNotification*) inNotification
 {
 	[mainWindow makeFirstResponder:writeDataField];
-	[self discoverInterfaces];
+    
+    [self performSelector:@selector(discoverInterfaces)
+               withObject:nil
+               afterDelay:0.1];
+    
+	//[self discoverInterfaces];
 }
 
 - (void) dealloc
@@ -109,9 +120,12 @@ void IOWarriorCallback (void* inRefCon)
 			BOOL		canDisablePullUpResistors;
 			BOOL		canUseSensibus;
 			
-			canDisablePullUpResistors = listNode->interfaceType == kIOWarrior24Interface1;
+			canDisablePullUpResistors = (listNode->interfaceType == kIOWarrior24Interface1) ||
+                                        (listNode->interfaceType == kIOWarrior56Interface1);
 			canUseSensibus = (listNode->interfaceType == kIOWarrior24Interface1) ||
 							 (listNode->interfaceType == kIOWarrior40Interface1);
+            
+            NSLog (@"found interface at %lu", listNode->ioWarriorHIDInterface);
 
 			[foundInterfacesController addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
 												  displayName, @"displayName",
@@ -125,10 +139,7 @@ void IOWarriorCallback (void* inRefCon)
 												  [NSNumber numberWithBool:canDisablePullUpResistors], @"canDisablePullUpResistors",
 												  [NSNumber numberWithBool:canUseSensibus], @"canUseSensibus", 
 												  nil]];
-			unsigned char				*interruptReportBuffer = malloc (8);
-
-			IOWarriorSetInterruptCallback (listNode->ioWarriorHIDInterface, interruptReportBuffer, 8, 
-										   interruptCallback, (void*) self);
+		
 		}
 		[existingDeviceSerials addObject:(NSString*) listNode->serialNumber];
     }
@@ -146,7 +157,7 @@ void IOWarriorCallback (void* inRefCon)
 		if (deviceDict == [self currentScanInterface])
 		{
 			[self setCurrentScanInterface:nil];
-			isScanningForDevices = NO;
+			[self setIsScanningForDevices:NO];
 		}	
 	}
 	[foundInterfacesController setSelectedObjects:[NSArray array]];
@@ -162,11 +173,8 @@ void IOWarriorCallback (void* inRefCon)
 }
 
 - (void) scanNewInterfacesForDevices
-{
-	NSEnumerator		*e = [[foundInterfacesController arrangedObjects] objectEnumerator];
-	NSMutableDictionary *deviceDictionary;
-	
-	while (nil != (deviceDictionary = [ e nextObject ]))
+{	
+	for (NSMutableDictionary *deviceDictionary in [foundInterfacesController arrangedObjects])
 	{
 		if ([[deviceDictionary objectForKey:@"needsDeviceScan"] boolValue] &&
 			![[deviceDictionary objectForKey:@"sensibusEnabled"] boolValue])
@@ -223,7 +231,7 @@ void IOWarriorCallback (void* inRefCon)
 	
 	
 	// disable/ enable I2C
-	char			buffer[8];
+	char			buffer[64];
 	int				result;
 	
 	bzero(buffer, sizeof(buffer));
@@ -234,8 +242,11 @@ void IOWarriorCallback (void* inRefCon)
 	if (result != kIOReturnSuccess)
 	{
 		[self handleError:result];
+        return;
 	}
 	
+    sleep(1);
+    
 	bzero(buffer, sizeof(buffer));
 
 	buffer[0] = 0x01;
@@ -245,10 +256,23 @@ void IOWarriorCallback (void* inRefCon)
 	if (result != kIOReturnSuccess)
 	{
 		[self handleError:result];
+        return;
 	}
-	
+    sleep(1);
+
 	currentScanAddress = 0;
-	isScanningForDevices = YES;
+    
+    unsigned char				*interruptReportBuffer = malloc (64);
+    
+    result = IOWarriorSetInterruptCallback ([self selectedInterface], interruptReportBuffer, 64, 
+                                   interruptCallback, (void*) self);
+    if (result != kIOReturnSuccess)
+	{
+		[self handleError:result];
+        return;
+	}
+    
+	[self setIsScanningForDevices: YES];
 	[self checkNextAddressForDevice];
 
 }
@@ -295,7 +319,7 @@ void IOWarriorCallback (void* inRefCon)
 
 - (void) checkNextAddressForDevice
 {
-	char				buffer[8];
+	char				buffer[64];
 	int					result;
 
 	// exit if there is no scanning done at the moment
@@ -306,8 +330,8 @@ void IOWarriorCallback (void* inRefCon)
 	
 	if (currentScanAddress > 127)
 	{
-		// we scanned the whol address space already
-		isScanningForDevices = NO;
+		// we scanned the whole address space already
+		[self setIsScanningForDevices: NO];
 		[self setCurrentScanInterface:nil];
 		
 		NSMutableDictionary		*deviceDictionary = [self selectedInterfaceDictionary];
@@ -332,18 +356,19 @@ void IOWarriorCallback (void* inRefCon)
 	}
 	else
 	{
-		//NSLog (@"probing address 0x%02x for device %@", currentScanAddress, [[self selectedInterfaceDictionary] objectForKey:@"serial"]);
+		NSLog (@"probing address 0x%02x for device %@ at %lu", currentScanAddress, [[self selectedInterfaceDictionary] objectForKey:@"serial"], [self selectedInterface]);
 		// probe next address
 		bzero(buffer, sizeof(buffer));
 		
-		buffer[0] = 0x02;
-		buffer[1] = 0xC1;
+		buffer[0] = 0x03;
+		buffer[1] = 0x01;
 		buffer[2] = currentScanAddress << 1;
+        buffer[2] = buffer[2] | 1;
 		
 		result = IOWarriorWriteToInterface ([self selectedInterface], sizeof(buffer), buffer);
 		if (result != kIOReturnSuccess)
 		{
-			isScanningForDevices = NO;
+			[self setIsScanningForDevices:NO];
 			[self setCurrentScanInterface:nil];
 			[[self selectedInterfaceDictionary] removeObjectForKey:@"needsDeviceScan"];
 			[self handleError:result];

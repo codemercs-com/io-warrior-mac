@@ -31,6 +31,8 @@
 	NSDictionary	*currentScanInterface;
 }
 
+@property (assign) BOOL isScanningForDevices;
+
 - (void) discoverInterfaces;
 
 - (void) scanNewInterfacesForDevices;
@@ -62,6 +64,5 @@
 
 - (NSDictionary *) currentScanInterface;
 - (void) setCurrentScanInterface: (NSDictionary *) inCurrentScanInterface;
-
 
 @end

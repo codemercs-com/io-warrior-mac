@@ -181,7 +181,11 @@
 			isa = PBXProject;
 			buildConfigurationList = 4D3E94DE0A022C400012DCF9 /* Build configuration list for PBXProject "IOWarriorProber" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* IOWarriorProber */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -315,12 +319,8 @@
 		4D3E94DF0A022C400012DCF9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_VERSION = 4.0;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT = macosx10.4;
-				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
-				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				SDKROOT = macosx10.6;
 			};
 			name = Development;
 		};
@@ -331,8 +331,8 @@
 					ppc,
 					i386,
 				);
-				GCC_VERSION = 4.0;
-				SDKROOT = macosx10.4;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				SDKROOT = macosx10.6;
 			};
 			name = Deployment;
 		};
