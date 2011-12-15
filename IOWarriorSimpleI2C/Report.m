@@ -65,7 +65,14 @@
 
 - (NSString*) payloadString
 {
-	return [[[[self displayString] componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange (2, 6)] componentsJoinedByString:@" "];
+    NSInteger *byteCount = [[self byteCountString] integerValue];
+    if (byteCount < 0)
+        return nil;
+    
+    NSArray  *components = [[self displayString] componentsSeparatedByString:@" "];
+    NSUInteger length = MIN(byteCount, ([components count]-2));
+    components = [components subarrayWithRange:NSMakeRange (2, length)];
+	return [components componentsJoinedByString:@" "];
 }
 
 - (NSArray*) reportStrings

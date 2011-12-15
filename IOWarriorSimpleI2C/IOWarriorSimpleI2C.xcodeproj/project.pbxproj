@@ -269,8 +269,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				SDKROOT = macosx10.6;
+				GCC_VERSION = 4.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
