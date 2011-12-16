@@ -232,14 +232,19 @@ void IOWarriorCallback (void* inRefCon)
 
 - (void) scanSelectedInterfaceForDevices
 {
-	NSMutableDictionary *selectedDeviceDict = [self selectedInterfaceDictionary];
+	NSMutableDictionary				*selectedIntefaceDict = [self selectedInterfaceDictionary];
+	IOWarriorHIDDeviceInterface**	selectedInterface;
+	
+	selectedInterface = (IOWarriorHIDDeviceInterface**) [[selectedIntefaceDict objectForKey:@"interfaceAddress"] unsignedLongValue] ;
 	
 	if (isScanningForDevices == YES)
 		return;
 	
+	[self selectInterfaceForDictionary:selectedIntefaceDict];
+		
 	//NSLog (@"starting address scan for device %@ ", [selectedDeviceDict objectForKey:@"serial"]);
 	
-	[self setCurrentScanInterface:selectedDeviceDict];
+	[self setCurrentScanInterface:selectedIntefaceDict];
 	
 	while ([[foundDevicesController arrangedObjects] count])
 		[foundDevicesController removeObjectAtArrangedObjectIndex:0];
@@ -250,12 +255,12 @@ void IOWarriorCallback (void* inRefCon)
 									   [NSNumber numberWithUnsignedChar:0], @"address",
 									   nil ]];
 	
-	[selectedDeviceDict setObject:[NSNumber numberWithBool:YES] 
+	[selectedIntefaceDict setObject:[NSNumber numberWithBool:YES] 
 					  forKey:@"canReadOrWrite"];
 	
 	
 	// disable/ enable I2C
-	int		reportSize = [[selectedDeviceDict objectForKey:@"reportSize"] intValue]; 
+	int		reportSize = [[selectedIntefaceDict objectForKey:@"reportSize"] intValue]; 
 	char	buffer[reportSize];
 	int		result;
 	
@@ -263,7 +268,7 @@ void IOWarriorCallback (void* inRefCon)
 	buffer[0] = 0x01;
 	buffer[1] = 0x00;
 	
-	result = IOWarriorWriteToInterface ([self selectedInterface], reportSize, buffer);
+	result = IOWarriorWriteToInterface (selectedInterface, reportSize, buffer);
 	if (result != kIOReturnSuccess)
 	{
 		[self handleError:result];
@@ -275,7 +280,7 @@ void IOWarriorCallback (void* inRefCon)
 	buffer[0] = 0x01;
 	buffer[1] = 0x01;
 	
-	result = IOWarriorWriteToInterface ([self selectedInterface], reportSize, buffer);
+	result = IOWarriorWriteToInterface (selectedInterface, reportSize, buffer);
 	if (result != kIOReturnSuccess)
 	{
 		[self handleError:result];
@@ -286,7 +291,7 @@ void IOWarriorCallback (void* inRefCon)
     
     unsigned char				*interruptReportBuffer = malloc (reportSize);
     
-    result = IOWarriorSetInterruptCallback ([self selectedInterface], interruptReportBuffer, reportSize, 
+    result = IOWarriorSetInterruptCallback (selectedInterface, interruptReportBuffer, reportSize, 
                                    interruptCallback, (void*) self);
     if (result != kIOReturnSuccess)
 	{
@@ -357,7 +362,7 @@ void IOWarriorCallback (void* inRefCon)
 		
 		NSMutableDictionary		*deviceDictionary = [self selectedInterfaceDictionary];
 
-		NSLog (@"ended address scan for device %@", [deviceDictionary objectForKey:@"serial"]);
+		//NSLog (@"ended address scan for device %@", [deviceDictionary objectForKey:@"serial"]);
 
 		[deviceDictionary removeObjectForKey:@"needsDeviceScan"];
 		
@@ -416,7 +421,7 @@ void IOWarriorCallback (void* inRefCon)
 	if (!isScanningForDevices)
 		return;
 	
-	NSLog (@"saving address 0x%02x for device %@", currentScanAddress, [[self selectedInterfaceDictionary] objectForKey:@"serial"]);
+	//NSLog (@"saving address 0x%02x for device %@", currentScanAddress, [[self selectedInterfaceDictionary] objectForKey:@"serial"]);
 	
 	NSMutableDictionary *deviceDescription;
 	NSString			*hexAddress;
@@ -442,6 +447,7 @@ void IOWarriorCallback (void* inRefCon)
 	NSMutableArray	*dataToWrite = [NSMutableArray array];
 	NSMutableArray	*reportStrings = [NSMutableArray array]; // display representation of the sent data
 	NSDictionary	*interfaceDict = [self selectedInterfaceDictionary];
+	int				reportSize = [[interfaceDict objectForKey:@"reportSize"] intValue];
 
 	while (([self useHex] && [scanner scanHexInt:&value]) || [scanner scanInt:&signedValue])
 	{
@@ -470,15 +476,14 @@ void IOWarriorCallback (void* inRefCon)
 	// chop data into reports
 	while ([dataToWrite count])
 	{
-        const unsigned int kReportSize = 64;
-		unsigned char reportData[kReportSize];
+		unsigned char reportData[reportSize];
 		
-		bzero (reportData, kReportSize);
+		bzero (reportData, reportSize);
 		reportData[0] = 2;
 		
 		if (0 == [reportStrings count]) // we are constructing the first report, set start bit
 			reportData[1] |= 0x80;
-		if ([dataToWrite count] <= (kReportSize - 2)) 
+		if ([dataToWrite count] <= (reportSize - 2)) 
 		{
             // this is the last report in this block, set stop bit & size bits
 			reportData[1] |= 0x40;
@@ -487,14 +492,14 @@ void IOWarriorCallback (void* inRefCon)
 		else
 		{
             // set size bits
-			reportData[1] |= (kReportSize - 2);
+			reportData[1] |= (reportSize - 2);
 		}
 		
 		// fill in remaining 62 report bytes, if available
 		
 		int i = 2;
 		
-		while (i < kReportSize && [dataToWrite count])
+		while (i < reportSize && [dataToWrite count])
 		{
 			reportData[i] = [[dataToWrite objectAtIndex:0] unsignedCharValue];
 			[dataToWrite removeObjectAtIndex:0];
@@ -504,7 +509,7 @@ void IOWarriorCallback (void* inRefCon)
 		// sent data to device
 		int result;
 		
-		result = IOWarriorWriteToInterface([self selectedInterface], kReportSize, reportData);
+		result = IOWarriorWriteToInterface([self selectedInterface], reportSize, reportData);
 		if (kIOReturnSuccess != result)
 		{
 			[self handleError:result];
@@ -546,8 +551,9 @@ void IOWarriorCallback (void* inRefCon)
 
 - (IBAction) read:(id) sender
 {
-	unsigned char	reportData[64];
 	NSDictionary	*interfaceDict = [self selectedInterfaceDictionary];
+	int				reportSize = [[interfaceDict objectForKey:@"reportSize"] intValue];
+	unsigned char	reportData[reportSize];
 	int				result;
 
 	bzero (reportData, sizeof(reportData));

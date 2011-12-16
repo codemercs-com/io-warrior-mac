@@ -505,7 +505,10 @@ void IOWarriorDiscoverInterfaces ()
 							CFStringRef mySerialNumberRef;
 							
                             interfaceType = iteratorIndex % 2; // gives an IOWarrior40 interface
-                            if (kIOWarrior24DeviceID == deviceID)
+							if (kIOWarrior40DeviceID == deviceID)
+							{
+							}
+                            else if (kIOWarrior24DeviceID == deviceID)
                                 interfaceType += 2;		// gives an IOWarrior24 interface
 							else if (kIOWarrior56DeviceID == deviceID)
 								interfaceType += 4;		// compute interface type for IOWarrior 56
