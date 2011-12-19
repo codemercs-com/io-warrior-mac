@@ -50,6 +50,8 @@
 - (IBAction) read:(id) sender;
 - (IBAction) interfaceOptionsChanged:(id) sender;
 - (IBAction) inputFormatChanged:(id) sender;
+- (IBAction) clearWriteHistory:(id) sender;
+- (IBAction) clearReadHistory:(id) sender;
 
 - (unsigned char) selectedDeviceAddress;
 - (NSMutableDictionary*) selectedInterfaceDictionary;
@@ -65,5 +67,7 @@
 
 - (NSDictionary *) currentScanInterface;
 - (void) setCurrentScanInterface: (NSDictionary *) inCurrentScanInterface;
+
+
 
 @end

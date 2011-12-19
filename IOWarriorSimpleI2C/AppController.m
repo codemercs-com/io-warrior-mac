@@ -533,7 +533,10 @@ void IOWarriorCallback (void* inRefCon)
 	}
 	
 	// add report strings to write history
-	
+	if ([[writeHistoryController arrangedObjects] count])
+	{
+		[writeHistoryController setSelectionIndexPath:[NSIndexPath indexPathWithIndex:0]];
+	}
 	[writeHistoryController addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
 									   [writeDataField stringValue], @"displayString",
 									   reportStrings, @"reportStrings",
@@ -748,6 +751,22 @@ void IOWarriorCallback (void* inRefCon)
 	else
 	{
 		[[writeDataField cell] setPlaceholderString:@"0 255 255 255"];
+	}
+}
+
+- (IBAction) clearWriteHistory:(id) sender
+{
+	while ([[writeHistoryController arrangedObjects] count])
+	{
+		[writeHistoryController removeObjectAtArrangedObjectIndexPath:[NSIndexPath indexPathWithIndex:0]];
+	}
+}
+
+- (IBAction) clearReadHistory:(id) sender
+{
+	while ([[readDataDisplayStringsController arrangedObjects] count])
+	{
+		[readDataDisplayStringsController removeObjectAtArrangedObjectIndex:0];
 	}
 }
 
