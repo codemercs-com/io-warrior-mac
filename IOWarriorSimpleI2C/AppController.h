@@ -28,10 +28,13 @@
 	IBOutlet NSButton			*writeActionButton;
 	IBOutlet NSButton			*readActionButton;
 	
-	NSDictionary	*currentScanInterface;
+	NSDictionary				*currentScanInterface;
+	
+	BOOL						deviceSelected;
 }
 
 @property (assign) BOOL isScanningForDevices;
+@property (assign) BOOL deviceSelected;
 
 - (void) discoverInterfaces;
 

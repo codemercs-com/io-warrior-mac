@@ -73,6 +73,7 @@ void IOWarriorCallback (void* inRefCon)
 @implementation AppController
 
 @synthesize isScanningForDevices;
+@synthesize deviceSelected;
 
 - (void) awakeFromNib
 {	
@@ -603,11 +604,16 @@ void IOWarriorCallback (void* inRefCon)
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+	if (![(id) context isEqualTo:@"myContext"])
+	{
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
 	if (object == mainTreeController)
 	{
 		if (0 == [[mainTreeController selectedObjects] count])
 		{
 			[foundInterfacesController setSelectedObjects:[NSArray array]];
+			[self setDeviceSelected:NO];
 		}
 		else
 		{
@@ -625,6 +631,7 @@ void IOWarriorCallback (void* inRefCon)
 				
 				[foundInterfacesController setSelectionIndex:[path indexAtPosition:0]];
 				[foundDevicesController setSelectionIndex:[path indexAtPosition:1]];
+				[self setDeviceSelected:YES];
 			}
 		}
 	}
@@ -768,6 +775,11 @@ void IOWarriorCallback (void* inRefCon)
 	{
 		[readDataDisplayStringsController removeObjectAtArrangedObjectIndex:0];
 	}
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+	return YES;
 }
 
 @end
