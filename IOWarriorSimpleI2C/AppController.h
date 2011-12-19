@@ -49,6 +49,7 @@
 - (IBAction) write:(id) sender;
 - (IBAction) read:(id) sender;
 - (IBAction) interfaceOptionsChanged:(id) sender;
+- (IBAction) inputFormatChanged:(id) sender;
 
 - (unsigned char) selectedDeviceAddress;
 - (NSMutableDictionary*) selectedInterfaceDictionary;

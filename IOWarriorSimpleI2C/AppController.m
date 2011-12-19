@@ -739,4 +739,16 @@ void IOWarriorCallback (void* inRefCon)
     }
 }
 
+- (IBAction) inputFormatChanged:(id) sender
+{
+	if ([self useHex])
+	{
+		[[writeDataField cell] setPlaceholderString:@"00 FF FF FF"];
+	}
+	else
+	{
+		[[writeDataField cell] setPlaceholderString:@"0 255 255 255"];
+	}
+}
+
 @end
