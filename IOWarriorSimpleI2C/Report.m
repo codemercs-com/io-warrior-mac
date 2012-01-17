@@ -65,7 +65,7 @@
 
 - (NSString*) payloadString
 {
-    NSInteger *byteCount = [[self byteCountString] integerValue];
+    NSInteger byteCount = [[self byteCountString] integerValue];
     if (byteCount < 0)
         return nil;
     

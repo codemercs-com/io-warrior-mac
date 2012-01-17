@@ -600,6 +600,7 @@ void IOWarriorCallback (void* inRefCon)
 	
 	[theReport setReportData:inReadData];
 	[readDataDisplayStringsController addObject:theReport];
+    [readHistoryTableView scrollRowToVisible:([readHistoryTableView numberOfRows] - 1)];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
