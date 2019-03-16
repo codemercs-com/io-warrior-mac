@@ -77,7 +77,7 @@ void IOWarriorCallback (void* inRefCon)
 
 - (void) updateTemperatureField:(float) inTemperature
 {
-	[temperatureField setStringValue:[NSString stringWithFormat:@"%.2f¡ C", inTemperature]];
+	[temperatureField setStringValue:[NSString stringWithFormat:@"%.2f\ue28483 C", inTemperature]];
 }
 
 - (void) readTemperature:(NSTimer*) inTimer

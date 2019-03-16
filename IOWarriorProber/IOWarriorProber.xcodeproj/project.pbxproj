@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DA0A8E6223D52EF0088F849 /* IOWarriorUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DA0A8E5223D52EF0088F849 /* IOWarriorUtils.h */; };
 		4DB52F5E057FD64000088413 /* IOWarriorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DB52F5A057FD64000088413 /* IOWarriorWindowController.h */; };
 		4DB52F5F057FD64000088413 /* IOWarriorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB52F5B057FD64000088413 /* IOWarriorWindowController.m */; };
 		4DB52F60057FD64000088413 /* MacroNamePanelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DB52F5C057FD64000088413 /* MacroNamePanelController.h */; };
@@ -31,6 +32,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* IOWarriorProber_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOWarriorProber_Prefix.pch; sourceTree = "<group>"; };
+		4DA0A8E5223D52EF0088F849 /* IOWarriorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOWarriorUtils.h; path = "../IOWarrior Lib Sources/IOWarriorUtils.h"; sourceTree = "<group>"; };
 		4DB52F5A057FD64000088413 /* IOWarriorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IOWarriorWindowController.h; sourceTree = "<group>"; };
 		4DB52F5B057FD64000088413 /* IOWarriorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IOWarriorWindowController.m; sourceTree = "<group>"; };
 		4DB52F5C057FD64000088413 /* MacroNamePanelController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MacroNamePanelController.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				4DB53009057FD6A600088413 /* IOWarriorLib.c */,
 				4DB5300A057FD6A600088413 /* IOWarriorLib.h */,
 				B871DFB611D0F99E006CB699 /* IOWarriorUtils.m */,
+				4DA0A8E5223D52EF0088F849 /* IOWarriorUtils.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D1107280486CEB800E47090 /* IOWarriorProber_Prefix.pch in Headers */,
+				4DA0A8E6223D52EF0088F849 /* IOWarriorUtils.h in Headers */,
 				4DB52F5E057FD64000088413 /* IOWarriorWindowController.h in Headers */,
 				4DB52F60057FD64000088413 /* MacroNamePanelController.h in Headers */,
 				4DB5300C057FD6A600088413 /* IOWarriorLib.h in Headers */,
@@ -179,6 +183,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+			};
 			buildConfigurationList = 4D3E94DE0A022C400012DCF9 /* Build configuration list for PBXProject "IOWarriorProber" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -254,16 +261,18 @@
 		4D3E94DB0A022C400012DCF9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IOWarriorProber_Prefix.pch;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -273,6 +282,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codemercs.iowarriorprober;
 				PRODUCT_NAME = IOWarriorProber;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -288,13 +298,15 @@
 		4D3E94DC0A022C400012DCF9 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IOWarriorProber_Prefix.pch;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -304,6 +316,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codemercs.iowarriorprober;
 				PRODUCT_NAME = IOWarriorProber;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -319,20 +332,20 @@
 		4D3E94DF0A022C400012DCF9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				SDKROOT = macosx10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.13;
 			};
 			name = Development;
 		};
 		4D3E94E00A022C400012DCF9 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				SDKROOT = macosx10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				SDKROOT = macosx10.13;
 			};
 			name = Deployment;
 		};

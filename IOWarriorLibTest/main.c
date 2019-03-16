@@ -35,7 +35,7 @@ int main (int argc, const char * argv[])
     result = IOWarriorReadInterface0 (&buffer);
     if (result)
             printf ("IOWarriorReadInterface0 returned %d\n", result);
-    printf ("IOWarriorReadInterface0 read %08lx\n", buffer);
+    printf ("IOWarriorReadInterface0 read %08x\n", (unsigned int)buffer);
 
      /*
     // setting up 7 byte buffer - enabling LCD mode

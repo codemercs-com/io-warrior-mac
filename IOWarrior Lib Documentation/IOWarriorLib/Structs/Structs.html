@@ -8,11 +8,11 @@
 <hr><a name="//apple_ref/c/tag/IOWarriorListNodeStruct"></a>
 <table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h2><a name="IOWarriorListNodeStruct">IOWarriorListNodeStruct</a></h2>
 </td></tr></table><hr><blockquote><pre>
-IONotificationPortRef GetNotificationPort ();
+IONotificationPortRef GetNotificationPort (void);
 
 
 struct IOWarriorListNodeStruct {
-    IONotificationPortRef GetNotificationPort ();
+    IONotificationPortRef GetNotificationPort (void);
     struct IOWarriorListNodeStruct
     {
     IOWarriorHIDDeviceInterface**   ioWarriorHIDInterface;      // IOKits interface object
@@ -37,5 +37,5 @@ connected to the system. You can use IOWarriorCountInterfaces and IOWarriorInter
 <dt><tt>interfaceOpened</tt></dt><dd>Has the interface already been opened.</dd>
 </dl>
 </blockquote>
-<p>(Last Updated 6/24/2008)
+<p>(Last Updated 3/16/2019)
 </p></body></html>

@@ -172,7 +172,7 @@
  @field interfaceOpened		Has the interface already been opened.
  */
 
-IONotificationPortRef GetNotificationPort ();
+IONotificationPortRef GetNotificationPort (void);
 
 
 struct IOWarriorListNodeStruct
@@ -199,7 +199,7 @@ typedef void (*IOWarriorDeviceCallbackFunctionPtr) (void* inRefCon);
 @abstract Initializes the IOWarrior library. Call this before calling any other functions.
 @result Returns 0 if successfull, otherwise return value is different from 0.
  */
-int IOWarriorInit ();
+int IOWarriorInit (void);
 
 
 void IOWarriorSetCustomDeviceIDs (CFArrayRef inDeviceIDs);
@@ -209,14 +209,14 @@ void IOWarriorSetCustomDeviceIDs (CFArrayRef inDeviceIDs);
 @abstract Use this function to too see of an IOWarrior device is present.
 @result Returns 1 if at least one IOWarrior is connected to this system. Returns 0 if no IOWarrior device could be discovered.
  */
-int IOWarriorIsPresent ();
+int IOWarriorIsPresent (void);
 
 /*!
 @function IOWarriorCount
  @abstract Returns the number of interfaces connected to this system.
  @result The number of IOWarrior interfaces. 
  */
-int IOWarriorCountInterfaces ();
+int IOWarriorCountInterfaces (void);
 
 /*!
 @function IOWarriorWriteInterface0

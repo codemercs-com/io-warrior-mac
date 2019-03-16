@@ -213,7 +213,7 @@ void IOWarriorCallback ()
     {
         // we have somd kind of interface1, install interrupt handler
         char* buffer;
-		int	 size;
+		int	 size = 8;
         
 		if (listNode->interfaceType == kIOWarrior24Interface1 ||
 			listNode->interfaceType == kIOWarrior40Interface1 ||

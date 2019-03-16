@@ -371,7 +371,7 @@ void IOWarriorCallback (void* inRefCon)
 		{
 			[foundDevicesController setSelectionIndex:0];
 			
-			unsigned int	path[2];
+			NSUInteger	path[2];
 			
 			path[0] = [foundInterfacesController selectionIndex];
 			path[1] = 0;

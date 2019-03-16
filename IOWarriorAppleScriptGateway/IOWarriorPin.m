@@ -7,6 +7,7 @@
 //
 
 #import "IOWarriorPin.h"
+#import "NSApplicationScriptingAdditions.h"
 
 @implementation IOWarriorPin
 

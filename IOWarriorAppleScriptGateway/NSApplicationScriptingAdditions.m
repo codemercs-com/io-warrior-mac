@@ -13,8 +13,8 @@
 // Protptypes
 UInt32				swaplong (UInt32 number);
 
-IOWarriorListNode*	myDiscoverInterface0 ();
-IOWarriorListNode*	myDiscoverInterface1 ();
+IOWarriorListNode*	myDiscoverInterface0 (void);
+IOWarriorListNode*	myDiscoverInterface1 (void);
 //int					MyWriteInterface1 (int reportID, void* inData);
 
 int					reportSizeForInterface(IOWarriorListNode* inNode);
@@ -321,14 +321,14 @@ NSTimer*		gBufferedReadTimer = nil;
 
 - (id) handleReadBufferSize:(NSScriptCommand*) command
 {
-    int result = 0;
+    NSUInteger result = 0;
     
     if (gInterface0Buffer != nil)
     {
         result = [gInterface0Buffer count];
     }
 
-    return [NSNumber numberWithInt:result];
+    return @(result);
 }
 
 - (void) bufferedReadInterface0

@@ -5,7 +5,7 @@
 
 @class InterfaceWriter;
 
-@interface MyController : NSObject
+@interface MyController : NSObject <NSTextFieldDelegate>
 {
     IBOutlet NSTextField	*theField;
 	IBOutlet NSSlider		*speedSlider;

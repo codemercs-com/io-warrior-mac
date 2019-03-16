@@ -258,9 +258,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 4D8FB7FE0A0223C00057770E /* Build configuration list for PBXProject "IOWarrior24IRTest" */;
 			compatibilityVersion = "Xcode 3.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* IOWarrior24IRTest */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -411,20 +417,22 @@
 		4D8FB7FF0A0223C00057770E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				GCC_VERSION = 4.0;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				SDKROOT = macosx10.13;
 			};
 			name = Development;
 		};
 		4D8FB8000A0223C00057770E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				GCC_VERSION = 4.0;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				SDKROOT = macosx10.13;
 			};
 			name = Deployment;
 		};

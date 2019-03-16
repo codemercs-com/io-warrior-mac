@@ -29,12 +29,12 @@ IOWarriorHIDDeviceInterface** gMyInterface; // the interface we are using for wr
 
 int							 gReportSize; // the size of the reports being sent, depends on IOWarriorType
 
-void enableLCDMode ();
-void initDisplay ();
+void enableLCDMode (void);
+void initDisplay (void);
 void writeToDisplay (const char *inString);
 void writeLineToDisplay (const char* inString);
-void moveToLine2 ();
-int myDiscoverInterfaces ();
+void moveToLine2 (void);
+int myDiscoverInterfaces (void);
 int myWriteInterface1 (int inReportID, void* inData);
 
 int main (int argc, const char * argv[])
@@ -89,10 +89,10 @@ void initDisplay ()
 // writes a string to the current line
 void writeLineToDisplay (const char* inString)
 {
-    int 	length = strlen (inString);
-    char 	buffer[7];
-    int		i;
-    const char*	currentChar = inString;
+    unsigned long 	length = strlen (inString);
+    char 	        buffer[7];
+    int		        i;
+    const           char*	currentChar = inString;
 
     
     // we truncate after the first 6 letters

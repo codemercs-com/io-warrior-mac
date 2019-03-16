@@ -20,7 +20,7 @@
     theController = [[MacroNamePanelController alloc] init];
     [theController showWindow:nil];
     returnCode = [NSApp runModalForWindow:[theController window]];
-    if (returnCode == NSRunStoppedResponse)
+    if (returnCode == NSModalResponseStop)
     {
         result = [theController macroName];
     }

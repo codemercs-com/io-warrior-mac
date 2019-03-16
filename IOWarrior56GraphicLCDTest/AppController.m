@@ -45,30 +45,27 @@ void IOWarriorCallback ()
 {
 	// ask for an image file
 	NSOpenPanel		*openPanel = [NSOpenPanel openPanel];
-	NSEnumerator	*e;
 	NSMutableArray	*newFiles = [NSMutableArray array];
 	
-	[openPanel setAllowedFileTypes: [NSImage imageFileTypes]];
+	[openPanel setAllowedFileTypes: [NSImage imageTypes]];
 	[openPanel setCanChooseDirectories:YES];
 	[openPanel setAllowsMultipleSelection:YES];
 	
-	if (NO == [openPanel runModalForDirectory:nil
-										 file:nil])
+	if (NO == [openPanel runModal])
 	{
 		[self setSlideShowFiles:[NSMutableArray array]];
 		return;
 	}
-	
-	e = [[openPanel filenames] objectEnumerator];
-	NSString *theFile;
-	BOOL	 isDir;
-	
-	while (nil != (theFile = [e nextObject]))
-	{
+
+    for (NSURL *fileURL in openPanel.URLs)
+    {
+        NSString *theFile = fileURL.path;
+        BOOL     isDir;
+
 		if ([[NSFileManager defaultManager] fileExistsAtPath:theFile isDirectory:&isDir] && isDir)
 		{
 			// iterate over selected Dir contents
-			NSArray			*dirContents = [[NSFileManager defaultManager] directoryContentsAtPath:theFile];
+            NSArray			*dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:theFile error:nil];
 			NSEnumerator	*dirEnum = [dirContents objectEnumerator];
 			NSString		*fileFromDir;
 			
@@ -78,7 +75,7 @@ void IOWarriorCallback ()
 					
 				if ([[NSFileManager defaultManager] fileExistsAtPath:fileFromDirPath isDirectory:&isDir] && !isDir)
 				{
-					if ([[NSImage imageFileTypes] containsObject:[fileFromDirPath pathExtension]])
+					if ([[NSImage imageTypes] containsObject:[fileFromDirPath pathExtension]])
 					{
 						[newFiles addObject:fileFromDirPath];
 					}
@@ -126,12 +123,11 @@ void IOWarriorCallback ()
 	
 	NSImage *otherImage = [[NSImage alloc] initWithContentsOfFile:inImagePath];
 	
-	[otherImage setScalesWhenResized:YES];
 	[otherImage setSize:NSMakeSize (kDisplayWidth, kDisplayHeight)];
 	
 	[otherImage drawInRect:NSMakeRect (0,0, kDisplayWidth, kDisplayHeight)
 				  fromRect:NSZeroRect
-				 operation:NSCompositeSourceOver
+                 operation:NSCompositingOperationSourceOver
 				  fraction:1.0];
 	
 	[theImage unlockFocus];
@@ -320,7 +316,7 @@ typedef struct _RGBAPixel
 
 - (BOOL) pixelIsSetInImageRep:(NSBitmapImageRep*)inImageRep atRow:(int) inRow column:(int) inColumn
 {
-	int			widthInPixels = [inImageRep pixelsWide];
+	NSInteger widthInPixels = [inImageRep pixelsWide];
 		
 	if (3 == [inImageRep samplesPerPixel])
 	{

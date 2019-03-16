@@ -40,18 +40,18 @@ void 			IOWarriorRemoved(void *refCon, io_iterator_t iterator);
 int  			IOWarriorWrite (int inWarriorIndex, int inInterfaceIndex, int inSize, void* inData);
 int 			IOWarriorRead (int inWarriorIndex, int inInterfaceIndex, int inReportID, int inSize, void* outData);
 io_iterator_t 		IOWarriorFindHIDDevices (const mach_port_t masterPort, UInt32 usagePage, UInt32 usage);
-void 			IOWarriorDiscoverInterfaces ();
+void 			IOWarriorDiscoverInterfaces (void);
 CFMutableDictionaryRef 	IOWarriorSetUpHIDMatchingDictionary (UInt32 usagePage, UInt32 usage);
 IOWarriorHIDDeviceInterface** 	IOWarriorCreateHIDDeviceInterface (io_object_t hidDevice);
 void 			byteSwap (void* ioData, int inCount);
 void 			IOWarriorAddInterfaceToList (IOWarriorHIDDeviceInterface** inInterface,
                                      int inInterfaceType, CFStringRef inDeviceSerialNumber);
 
-void 			IOWarriorClearInterfaceList ();
+void 			IOWarriorClearInterfaceList (void);
 IOWarriorHIDDeviceInterface** 	IOWarriorGetInterface (int inWarriorIndex,int inInterfaceIndex);
 IOWarriorListNode* 	IOWarriorGetInterfaceListNode (int inWarriorIndex,int inInterfaceIndex);
 
-void 			IOWarriorRebuildInterfaceList ();
+void 			IOWarriorRebuildInterfaceList (void);
 
 // Debug utilities
 void PrintNotificationMessage (char* msg);
@@ -125,8 +125,8 @@ int IOWarriorInit ()
     mach_port_t             masterPort;
     CFRunLoopSourceRef      runLoopSource;
 	CFMutableArrayRef		deviceIDs;
-	int						i;
-	int						count;
+	long					i;
+	long    				count;
 
     gIOWarriorList = NULL;
     gIOWarriorListDirty = 1;
@@ -595,7 +595,7 @@ void IOWarriorAdded(void *refCon, io_iterator_t iterator)
 {
     io_service_t            usbDevice;
     
-    while (usbDevice = IOIteratorNext(iterator))
+    while ((usbDevice = IOIteratorNext(iterator)) != 0)
     {
         PrintNotificationMessage ("Discovered IOWarrior device\n");
         IOObjectRelease(usbDevice);
@@ -610,7 +610,7 @@ void IOWarriorRemoved(void *refCon, io_iterator_t iterator)
 {
     io_service_t    usbDevice;
 
-    while (usbDevice = IOIteratorNext(iterator))
+    while ((usbDevice = IOIteratorNext(iterator)) != 0)
     {
         PrintNotificationMessage ("IOWarrior device removed\n");
         IOObjectRelease(usbDevice);
@@ -710,7 +710,7 @@ void PrintErrMsg (char * msg)
 
 void PrintErrMsgIfIOErr (long expr, char * msg)
 {
-    IOReturn err = (expr);
+    IOReturn err = (IOReturn) expr;
     if (err != kIOReturnSuccess)
     {
         fprintf (stderr, "%s - %s(%x,%d)\n",

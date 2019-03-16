@@ -84,7 +84,7 @@ void IOWarriorCallback ()
 - (IOWarriorHIDDeviceInterface**) selectedInterface
 {
 	int count = IOWarriorCountInterfaces();
-	int selectedIndex = [interfacePopup indexOfSelectedItem];
+	NSInteger selectedIndex = [interfacePopup indexOfSelectedItem];
 	int interfaces = 0;
 	int i;
 	

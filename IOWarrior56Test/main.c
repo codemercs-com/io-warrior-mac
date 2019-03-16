@@ -17,15 +17,15 @@ int main (int argc, const char * argv[]) {
 	interface = IOWarriorFirstInterfaceOfType (kIOWarrior56Interface0);
 	if (nil == interface)
 	{
-		printf ("No kIOWarrior56Interface0 found.\n", result);
+		printf ("No kIOWarrior56Interface0 found.\n");
         return -1;
 	}
 	
 	result = IOWarriorWriteToInterface (interface,sizeof (buffer), buffer);
 	if (result)
 	{
-		     printf ("IOWarriorWriteToInterface returned %d\n", result);
-			return -1;
+        printf ("IOWarriorWriteToInterface returned %d\n", result);
+        return -1;
 	}
 	
     return 0;

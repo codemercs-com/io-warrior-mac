@@ -293,7 +293,7 @@ typedef struct _RGBAPixel
 - (BOOL) pixelIsSetInImageRep:(NSBitmapImageRep*)inImageRep atRow:(int) inRow column:(int) inColumn
 {
 	RGBAPixel *pixels = (RGBAPixel *)[inImageRep bitmapData];
-	int widthInPixels = [inImageRep pixelsWide];
+	NSInteger widthInPixels = [inImageRep pixelsWide];
 	
 	//NSAssert (3 == [inImageRep samplesPerPixel], @"inImageRep doesn't have RGB format");
 	
