@@ -64,26 +64,23 @@ void IOWarriorCallback ()
 - (void) populateInterfacePopup
 /*" Inserts currently available IOWarrior interfaces into popup menu. "*/
 {
-    int i, interfaceCount;
-    
+    NSInteger i, interfaceCount;
+
     [interfacePopup removeAllItems];
     interfaceCount = IOWarriorCountInterfaces ();
-    if (0 == interfaceCount)
-    {
-        [interfacePopup setEnabled:NO];
-    }
-    else
-    {
-        [interfacePopup setEnabled:YES];
-    }
+
+    NSLog (@"populateInterfacePopup, interfaces counted: %ld", interfaceCount);
+
+    [interfacePopup setEnabled:0 != interfaceCount];
+
     for (i = 0; i < interfaceCount; i++)
     {
-        IOWarriorListNode* 	listNode;
-        NSString*		title;
+        IOWarriorListNode*     listNode;
+        NSString*              title;
 
         listNode = IOWarriorInterfaceListNodeAtIndex (i);
         title = [NSString stringWithFormat:@"%@ (SN %@)", [IOWarriorUtils nameForIOWarriorInterfaceType:listNode->interfaceType],
-            listNode->serialNumber];
+                 listNode->serialNumber];
         [interfacePopup addItemWithTitle:title];
     }
     [self interfacePopupChanged:self];
@@ -228,7 +225,9 @@ void IOWarriorCallback ()
 		else if (listNode->interfaceType == kIOWarrior56Interface1)
 		{
 			size = 64;
-		}
+        } else if (listNode->interfaceType == kIOWarrior28Interface0){
+            size = 4;
+        }
 		buffer = malloc(size);
         IOWarriorSetInterruptCallback(listNode->ioWarriorHIDInterface, buffer, size, reportHandlerCallback, self);
     }
@@ -253,8 +252,8 @@ void reportHandlerCallback (void *	 		target,
         //{
             [controller addLogEntryWithDirection:kReportDirectionIn
                                   reportID:reportID
-                                reportSize:bufferSize - 1
-                                reportData:(unsigned char*) &buffer[1]];
+                                reportSize:bufferSize
+                                reportData:(unsigned char*) &buffer[0]];
             [controller setLastValueRead:dataRead];
        // }
     }
@@ -291,6 +290,7 @@ void reportHandlerCallback (void *	 		target,
     
     reportSize = [self reportSizeForInterfaceType:listNode->interfaceType];
     if (listNode->interfaceType == kIOWarrior24Interface0 ||
+        listNode->interfaceType == kIOWarrior28Interface0 ||
         listNode->interfaceType == kIOWarrior40Interface0 ||
 		listNode->interfaceType == kIOWarrior56Interface0 ||
 		listNode->interfaceType == kIOWarrior24PVInterface0 ||
@@ -307,6 +307,7 @@ void reportHandlerCallback (void *	 		target,
         if (result != 0)
         {
             NSRunAlertPanel (@"IOWarrior Error", @"An error occured while trying to read from the selected IOWarrior device.", @"OK", nil, nil);
+            free (buffer);
             return NO;
         }
         dataRead = [NSData dataWithBytes:buffer length:reportSize];
@@ -330,7 +331,8 @@ void reportHandlerCallback (void *	 		target,
     
     switch (inType)
     {
-        case kIOWarrior40Interface0: 
+        case kIOWarrior40Interface0:
+        case kIOWarrior28Interface0:
 			result = 4; 
 		break;
 		
@@ -354,7 +356,10 @@ void reportHandlerCallback (void *	 		target,
 			result = 7;
 		break;
 		
-		case kIOWarrior56Interface1: 
+		case kIOWarrior56Interface1:
+        case kIOWarrior28Interface1:
+        case kIOWarrior28Interface2:
+        case kIOWarrior28Interface3:
 			result = 63;
 		break;
             
@@ -369,7 +374,6 @@ void reportHandlerCallback (void *	 		target,
         case kJoyWarrior24F14Interface0:
             result = 8;
         break;
-
     }
     return result;
 }
@@ -392,6 +396,7 @@ void reportHandlerCallback (void *	 		target,
         case kJoyWarrior24F8Interface1:
         case kMouseWarrior24F6Interface1:
         case kJoyWarrior24F14Interface1:
+        case kIOWarrior28Interface0:
             result = NO;
         break;
             
@@ -400,6 +405,9 @@ void reportHandlerCallback (void *	 		target,
 		case kIOWarrior24PVInterface1:
 		case kIOWarrior24CWInterface1:
 		case kIOWarrior56Interface1:
+        case kIOWarrior28Interface1:
+        case kIOWarrior28Interface2:
+        case kIOWarrior28Interface3:
             result = YES;
         break;
     }

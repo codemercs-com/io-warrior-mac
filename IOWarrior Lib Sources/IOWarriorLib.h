@@ -29,6 +29,7 @@
 #define kIOWarriorVendorID 1984
 #define kIOWarrior40DeviceID 0x1500
 #define kIOWarrior24DeviceID 0x1501
+#define kIOWarrior28DeviceID 0x1504
 #define kIOWarrior56DeviceID 0x1503
 #define kIOWarrior24PVDeviceID 0x1511
 #define kIOWarrior24CWDeviceID 0x1520 
@@ -67,7 +68,7 @@
 
 /*!
 @defined kIOWarrior24Interface1
- @discussion Interface type indentifier for an interface 0 of an IOWarrior 24.
+ @discussion Interface type indentifier for an interface 1 of an IOWarrior 24.
  */
 #define kIOWarrior24Interface1 3
 
@@ -143,6 +144,30 @@
  @discussion Interface type indentifier for an interface 0 of an IOWarrior 24 Charge Warrior.
  */
 #define kJoyWarrior24F14Interface1 15
+
+/*!
+ @defined kIOWarrior28Interface0
+ @discussion Interface type indentifier for an interface 0 of an IOWarrior 24.
+ */
+#define kIOWarrior28Interface0 16
+
+/*!
+ @defined kIOWarrior28Interface1
+ @discussion Interface type indentifier for an interface 1 of an IOWarrior 24.
+ */
+#define kIOWarrior28Interface1 17
+
+/*!
+ @defined kIOWarrior28Interface2
+ @discussion Interface type indentifier for an interface 2 of an IOWarrior 24.
+ */
+#define kIOWarrior28Interface2 18
+
+/*!
+ @defined kIOWarrior28Interface3
+ @discussion Interface type indentifier for an interface 3 of an IOWarrior 24.
+ */
+#define kIOWarrior28Interface3 19
 
 
 

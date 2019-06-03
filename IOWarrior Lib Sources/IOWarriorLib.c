@@ -18,7 +18,7 @@
 #include <mach/mach_error.h>
 
 // uncomment next line to see IOWarriorLib debug messages
-//#define IOWarriorDebug 1
+#define IOWarriorDebug 1
 
 
 //Global variables
@@ -39,9 +39,9 @@ void 			IOWarriorAdded(void *refCon, io_iterator_t iterator);
 void 			IOWarriorRemoved(void *refCon, io_iterator_t iterator);
 int  			IOWarriorWrite (int inWarriorIndex, int inInterfaceIndex, int inSize, void* inData);
 int 			IOWarriorRead (int inWarriorIndex, int inInterfaceIndex, int inReportID, int inSize, void* outData);
-io_iterator_t 		IOWarriorFindHIDDevices (const mach_port_t masterPort, UInt32 usagePage, UInt32 usage);
+io_iterator_t 		IOWarriorFindHIDDevices ();
 void 			IOWarriorDiscoverInterfaces (void);
-CFMutableDictionaryRef 	IOWarriorSetUpHIDMatchingDictionary (UInt32 usagePage, UInt32 usage);
+CFMutableDictionaryRef 	IOWarriorSetUpHIDMatchingDictionary ();
 IOWarriorHIDDeviceInterface** 	IOWarriorCreateHIDDeviceInterface (io_object_t hidDevice);
 void 			byteSwap (void* ioData, int inCount);
 void 			IOWarriorAddInterfaceToList (IOWarriorHIDDeviceInterface** inInterface,
@@ -66,7 +66,6 @@ IONotificationPortRef GetNotificationPort ()
     return gNotifyPort;
 }
 
-
 void IOWarriorSetCustomDeviceIDs (CFArrayRef inCustomDeviceIDs)
 {
 	CFRetain (inCustomDeviceIDs);
@@ -87,7 +86,8 @@ CFMutableArrayRef IOWarriorCreateDeviceIDArray ()
 	CFMutableArrayRef result;
 	int knownIDs[] = {
 		kIOWarrior40DeviceID, 
-		kIOWarrior24DeviceID, 
+		kIOWarrior24DeviceID,
+        kIOWarrior28DeviceID,
 		kIOWarrior56DeviceID, 
 		kIOWarrior24PVDeviceID, 
 		kIOWarrior24CWDeviceID,
@@ -114,9 +114,7 @@ CFMutableArrayRef IOWarriorCreateDeviceIDArray ()
 		CFRange theRange = {0, CFArrayGetCount(gCustomDeviceIDs)};
 		CFArrayAppendArray(result, gCustomDeviceIDs, theRange);
 	}
-	
-	return result;
-
+    return result;
 }
 
 int IOWarriorInit ()
@@ -449,142 +447,134 @@ IOWarriorHIDDeviceInterface** IOWarriorGetInterface (int inWarriorIndex,int inIn
 /* Populates the linked list of known IOWarrior Interfaces. It makes the assumption that the hidObjectIterator object returns all interface 0 just before interface 1 for each connected IOWarrior. Caller is responsible for releasing interface by calling (*interface)->Release (interface). */
 void IOWarriorDiscoverInterfaces ()
 {
-    mach_port_t			masterPort = 0;
-    io_iterator_t		hidObjectIterator = 0;
-    IOReturn			ioReturnValue;
+    io_iterator_t		            hidObjectIterator = 0;
     IOWarriorHIDDeviceInterface**	result = nil;
-    
-    ioReturnValue = IOMasterPort (bootstrap_port, &masterPort);
-    if (ioReturnValue)
-    {
-        PrintErrMsgIfIOErr (ioReturnValue, "Couldn't create a master I/O Kit Port.");
+
+    PrintNotificationMessage ("IOWarriorDiscoverInterfaces() called");
+
+    hidObjectIterator = IOWarriorFindHIDDevices ();
+    if (hidObjectIterator == 0) {
+        PrintErrMsg("IOWarriorDiscoverInterfaces(): IOWarriorFindHIDDevices returned nil iterator");
         return;
     }
-    hidObjectIterator = IOWarriorFindHIDDevices (masterPort, kHIDPage_GenericDesktop, 0); 
-	if (hidObjectIterator != 0)
-    {
-        io_object_t 	hidDevice = 0;
-        int 		iteratorIndex= 0;
-        
-        while ((hidDevice = IOIteratorNext (hidObjectIterator)))
-        {
-            kern_return_t err;
-            CFMutableDictionaryRef properties = NULL;
+    io_object_t 	    hidDevice = 0;
+    int 		        iteratorIndex= 0;
+    CFMutableArrayRef   deviceIDs = IOWarriorCreateDeviceIDArray();
 
-            err = IORegistryEntryCreateCFProperties (hidDevice, &properties, kCFAllocatorDefault, kNilOptions);
-						
-            if ((err == KERN_SUCCESS) && properties)
+    while ((hidDevice = IOIteratorNext (hidObjectIterator))) {
+        kern_return_t           err;
+        CFMutableDictionaryRef  properties = NULL;
+
+        err = IORegistryEntryCreateCFProperties (hidDevice, &properties, kCFAllocatorDefault, kNilOptions);
+
+        if (err != KERN_SUCCESS) {
+            PrintErrMsgIfIOErr (err, "IORegistryEntryCreateCFProperties returned error.");
+            continue;
+        }
+
+        CFTypeRef vendorIDRef;
+        CFTypeRef deviceIDRef;
+        CFTypeRef serialNumberRef;
+
+        vendorIDRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDVendorIDKey));
+        deviceIDRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDProductIDKey));
+        serialNumberRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDSerialNumberKey));
+        if (vendorIDRef && deviceIDRef) {
+            SInt16		vendorID = 0;
+            SInt16		deviceID = 0;
+            CFRange		range = {0, CFArrayGetCount(deviceIDs)};
+
+            CFNumberGetValue (vendorIDRef, kCFNumberSInt16Type, &vendorID);
+            CFNumberGetValue (deviceIDRef, kCFNumberSInt16Type, &deviceID);
+
+            // if the HID Device is an IOWarrior supported by this version of the library
+            if (vendorID == kIOWarriorVendorID &&
+                CFArrayContainsValue(deviceIDs, range, deviceIDRef))
             {
-                CFTypeRef vendorIDRef;
-                CFTypeRef deviceIDRef;
-                CFTypeRef serialNumberRef;
-                
-                vendorIDRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDVendorIDKey));
-                deviceIDRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDProductIDKey));
-                serialNumberRef = CFDictionaryGetValue (properties, CFSTR(kIOHIDSerialNumberKey));
-                if (vendorIDRef && deviceIDRef)
+                PrintNotificationMessage ("found IOWarrior HID device\n");
+                result = IOWarriorCreateHIDDeviceInterface (hidDevice);
+                if (NULL != result)
                 {
-                    SInt16		vendorID = 0;
-                    SInt16		deviceID = 0;
-					CFMutableArrayRef deviceIDs = IOWarriorCreateDeviceIDArray();
-					CFRange		range = {0, CFArrayGetCount(deviceIDs)};
+                    int			interfaceType;
+                    CFStringRef mySerialNumberRef;
 
-                    CFNumberGetValue (vendorIDRef, kCFNumberSInt16Type, &vendorID);
-                    CFNumberGetValue (deviceIDRef, kCFNumberSInt16Type, &deviceID);
-                                       // if the HID Device is an IOWarrior
-					
-					
-                    if (vendorID == kIOWarriorVendorID && 
-						CFArrayContainsValue(deviceIDs, range, deviceIDRef))
+                    if (kIOWarrior28DeviceID == deviceID) {
+                        interfaceType = iteratorIndex % 4; // 4 interfaces for IOWarrior28
+                    } else {
+                        interfaceType = iteratorIndex % 2; // all other IOWarriors have 2 interfaces
+                    }
+
+                    if (kIOWarrior24DeviceID == deviceID) {
+                        interfaceType += 2; // gives an IOWarrior24 interface
+                    } else if (kIOWarrior56DeviceID == deviceID) {
+                        interfaceType += 4;
+                    } else if (kIOWarrior24PVDeviceID == deviceID) {
+                        interfaceType += 6;
+                    } else if (kIOWarrior24CWDeviceID == deviceID) {
+                        interfaceType += 8;
+                    } else if (kJoyWarrior24F8DeviceID == deviceID) {
+                        interfaceType += 10;
+                    } else if (kMouseWarrior24F6DeviceID == deviceID) {
+                        interfaceType += 12;
+                    } else if (kJoyWarrior24F14DeviceID == deviceID) {
+                        interfaceType += 14;
+                    } else if (kIOWarrior28DeviceID == deviceID) {
+                        interfaceType += kIOWarrior28Interface0;
+                    } else {// it's a custom device id
+                        interfaceType += kIOWarriorCustomTypeInterface0;
+                    }
+
+                    mySerialNumberRef = NULL;
+                    if (NULL == serialNumberRef)
                     {
-                        PrintNotificationMessage ("found IOWarrior HID device\n");
-                        result = IOWarriorCreateHIDDeviceInterface (hidDevice);
-                        if (NULL != result)
-                        {
-                            int			interfaceType;
-							CFStringRef mySerialNumberRef;
-							
-                            interfaceType = iteratorIndex % 2; // gives an IOWarrior40 interface
-							if (kIOWarrior40DeviceID == deviceID)
-							{
-							}
-                            else if (kIOWarrior24DeviceID == deviceID)
-                                interfaceType += 2;		// gives an IOWarrior24 interface
-							else if (kIOWarrior56DeviceID == deviceID)
-								interfaceType += 4;		// compute interface type for IOWarrior 56
-							else if (kIOWarrior24PVDeviceID == deviceID)
-								interfaceType += 6;
-							else if (kIOWarrior24CWDeviceID == deviceID)
-								interfaceType += 8;
-                            else if (kJoyWarrior24F8DeviceID == deviceID)
-								interfaceType += 10;
-                            else if (kMouseWarrior24F6DeviceID == deviceID)
-								interfaceType += 12;
-                            else if (kJoyWarrior24F14DeviceID == deviceID)
-								interfaceType += 14;
-							else // it's a custom device id
-							{
-								interfaceType += kIOWarriorCustomTypeInterface0;
-							}
-							
-							mySerialNumberRef = NULL;
-							if (NULL == serialNumberRef)
-							{
-								// if device didn't supply us with a serial number, lets create our own
-								mySerialNumberRef = CFStringCreateWithCString (NULL, "0",  kCFStringEncodingMacRoman);
-							}
-							else
-							{
-								mySerialNumberRef = CFStringCreateCopy (NULL, serialNumberRef);
-							}
-							
-                            IOWarriorAddInterfaceToList (result, interfaceType, serialNumberRef);
-							CFRelease (mySerialNumberRef);
-							iteratorIndex++;
-                        }
+                        // if device didn't supply us with a serial number, lets create our own
+                        mySerialNumberRef = CFStringCreateWithCString (NULL, "0",  kCFStringEncodingMacRoman);
                     }
                     else
-					{
-                         PrintNotificationMessage ("HID device found, not IOWarrior\n");
-					}
-					CFRelease (deviceIDs);
+                    {
+                        mySerialNumberRef = CFStringCreateCopy (NULL, serialNumberRef);
+                    }
+
+                    IOWarriorAddInterfaceToList (result, interfaceType, serialNumberRef);
+                    CFRelease (mySerialNumberRef);
+                    iteratorIndex++;
                 }
-                CFRelease (properties);
+            } else {
+                 PrintNotificationMessage ("HID device found, not IOWarrior\n");
             }
-           IOObjectRelease (hidDevice);
-        }
-        IOObjectRelease (hidObjectIterator);
-    }
-    if (masterPort)
-        mach_port_deallocate (mach_task_self (), masterPort);
+        } // if (vendorIDRef && deviceIDRef)
+        CFRelease (properties);
+        IOObjectRelease (hidDevice);
+    } // end while
+    CFRelease (deviceIDs);
+    IOObjectRelease (hidObjectIterator);
+    //mach_port_deallocate (mach_task_self (), masterPort);
 	gIOWarriorListDirty = false; // mark interface list as up-to-data
 }
 
 /* Returns an iterator object, which can be used to iterate through all hid devices available on the machine. You have to release the iterator after usage be calling IOObjectRelease (hidObjectIterator).*/
-io_iterator_t IOWarriorFindHIDDevices (const mach_port_t masterPort, UInt32 usagePage, UInt32 usage)
+io_iterator_t IOWarriorFindHIDDevices ()
 {
-    CFMutableDictionaryRef hidMatchDictionary = NULL;
-    IOReturn			ioReturnValue = kIOReturnSuccess;
-    io_iterator_t		hidObjectIterator;
+    CFMutableDictionaryRef hidMatchDictionary = IOWarriorSetUpHIDMatchingDictionary ();;
 
     // Set up matching dictionary to search the I/O Registry for HID devices we are interested in. Dictionary reference is NULL if error.
-    hidMatchDictionary = IOWarriorSetUpHIDMatchingDictionary (usagePage, usage);
-    if (NULL == hidMatchDictionary)
-    {
+    if (NULL == hidMatchDictionary) {
         PrintErrMsg ("Couldn't create a matching dictionary.");
         return 0;
     }
 
+    io_iterator_t hidObjectIterator;
+
     // Now search I/O Registry for matching devices.
-    ioReturnValue = IOServiceGetMatchingServices (masterPort, hidMatchDictionary, &hidObjectIterator);
-    // If error, print message and hang (for debugging purposes).
-    if ((ioReturnValue != kIOReturnSuccess) | (hidObjectIterator == 0))
-    {
+    IOReturn ioReturnValue = IOServiceGetMatchingServices (kIOMasterPortDefault, hidMatchDictionary, &hidObjectIterator);
+    if (ioReturnValue != kIOReturnSuccess) {
+        PrintErrMsgIfIOErr(ioReturnValue, "IOServiceGetMatchingServices returned error");
         return 0;
     }
-
-    // IOServiceGetMatchingServices consumes a reference to the dictionary, so we don't need to release the dictionary ref.
-    hidMatchDictionary = NULL;
+    if (hidObjectIterator == 0) {
+        PrintErrMsg("IOServiceGetMatchingServices returned nil hidObjectIterator");
+        return 0;
+    }
 	
     return hidObjectIterator;
 }
@@ -594,15 +584,17 @@ io_iterator_t IOWarriorFindHIDDevices (const mach_port_t masterPort, UInt32 usag
 void IOWarriorAdded(void *refCon, io_iterator_t iterator)
 {
     io_service_t            usbDevice;
-    
+
     while ((usbDevice = IOIteratorNext(iterator)) != 0)
     {
         PrintNotificationMessage ("Discovered IOWarrior device\n");
         IOObjectRelease(usbDevice);
     }
+
     gIOWarriorListDirty = 1;
-    if (NULL != gIOWarriorCallBackPtr)
+    if (NULL != gIOWarriorCallBackPtr) {
         (*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
+    }
 }
 
 // Called by IOKit when an IOWarrior was removed from the system
@@ -616,44 +608,26 @@ void IOWarriorRemoved(void *refCon, io_iterator_t iterator)
         IOObjectRelease(usbDevice);
     }
     gIOWarriorListDirty = 1;
-    if (NULL != gIOWarriorCallBackPtr)
+    if (NULL != gIOWarriorCallBackPtr) {
         (*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
+    }
 }
 
-CFMutableDictionaryRef IOWarriorSetUpHIDMatchingDictionary (UInt32 usagePage, UInt32 usage)
+CFMutableDictionaryRef IOWarriorSetUpHIDMatchingDictionary ()
 {
-    CFNumberRef				refUsage = NULL, 
-							refUsagePage = NULL;
-    CFNumberRef				vendorIDRef = NULL;
-    int						vendorID = kIOWarriorVendorID;
-    
-	CFMutableDictionaryRef 	refHIDMatchDictionary = NULL;
-
     // Set up a matching dictionary to search I/O Registry by class name for all IOWarrior devices.
-    refHIDMatchDictionary = IOServiceMatching (kIOHIDDeviceKey);
-    if (refHIDMatchDictionary != NULL)
-    {
-        // Add key for device type (joystick, in this case) to refine the matching dictionary.
-        refUsage = CFNumberCreate (kCFAllocatorDefault, kCFNumberIntType, &usage);
-        refUsagePage = CFNumberCreate (kCFAllocatorDefault, kCFNumberIntType, &usagePage);
+	CFMutableDictionaryRef 	refHIDMatchDictionary = IOServiceMatching (kIOHIDDeviceKey);
 
-        //CFDictionarySetValue (refHIDMatchDictionary, CFSTR (kIOHIDPrimaryUsagePageKey), refUsagePage);
-        //CFDictionarySetValue (refHIDMatchDictionary, CFSTR (kIOHIDPrimaryUsageKey), refUsage);
-		
-		// retained by dictionary
-		CFRelease (refUsage); 
-		CFRelease (refUsagePage);
-
-        // Add key for vendor, ommit device id key so we see all IOWarrior Devices
-        vendorIDRef = CFNumberCreate (kCFAllocatorDefault, kCFNumberIntType, &vendorID);
-
-        CFDictionarySetValue (refHIDMatchDictionary, CFSTR (kIOHIDVendorIDKey), vendorIDRef);
-		
-		// retained by dictionary
-		CFRelease (vendorIDRef);
-    }
-    else
+    if (refHIDMatchDictionary == NULL) {
         PrintErrMsg ("Failed to get HID CFMutableDictionaryRef via IOServiceMatching.");
+        return NULL;
+    }
+    int                        vendorID = kIOWarriorVendorID;
+    CFNumberRef                vendorIDRef = CFNumberCreate (kCFAllocatorDefault, kCFNumberIntType, &vendorID);;
+
+    CFDictionarySetValue (refHIDMatchDictionary, CFSTR (kIOHIDVendorIDKey), vendorIDRef);
+    CFRelease (vendorIDRef);
+
     return refHIDMatchDictionary;
 }
 

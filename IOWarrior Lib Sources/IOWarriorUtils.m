@@ -80,6 +80,22 @@
         case kJoyWarrior24F14Interface1:
             return @"JoyWarrior24F14 Interface 1";
             break;
+
+        case kIOWarrior28Interface0:
+            return @"IOWarrior28 Interface 0";
+            break;
+            
+        case kIOWarrior28Interface1:
+            return @"IOWarrior28 Interface 1";
+            break;
+
+        case kIOWarrior28Interface2:
+            return @"IOWarrior28 Interface 2";
+            break;
+
+        case kIOWarrior28Interface3:
+            return @"IOWarrior28 Interface 3";
+            break;
 			
     }
     return @"Unknown interface type";
@@ -123,6 +139,14 @@
         case kJoyWarrior24F14Interface1:
             return @"JoyWarror/MouseWarrior 24";
             break;
+
+        case kIOWarrior28Interface0:
+        case kIOWarrior28Interface1:
+        case kIOWarrior28Interface2:
+        case kIOWarrior28Interface3:
+            return @"IOWarrior28";
+            break;
+
     }
     return @"Unknown interface type";
 }
