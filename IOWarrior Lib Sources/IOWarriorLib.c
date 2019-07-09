@@ -591,10 +591,12 @@ void IOWarriorAdded(void *refCon, io_iterator_t iterator)
         IOObjectRelease(usbDevice);
     }
 
-    gIOWarriorListDirty = 1;
-    if (NULL != gIOWarriorCallBackPtr) {
-        (*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
-    }
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		gIOWarriorListDirty = 1;
+		if (NULL != gIOWarriorCallBackPtr) {
+			(*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
+		}
+	});
 }
 
 // Called by IOKit when an IOWarrior was removed from the system
@@ -607,10 +609,13 @@ void IOWarriorRemoved(void *refCon, io_iterator_t iterator)
         PrintNotificationMessage ("IOWarrior device removed\n");
         IOObjectRelease(usbDevice);
     }
-    gIOWarriorListDirty = 1;
-    if (NULL != gIOWarriorCallBackPtr) {
-        (*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
-    }
+
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		gIOWarriorListDirty = 1;
+		if (NULL != gIOWarriorCallBackPtr) {
+			(*gIOWarriorCallBackPtr )(gIOWarriorCallBackRefCon);
+		}
+	});
 }
 
 CFMutableDictionaryRef IOWarriorSetUpHIDMatchingDictionary ()

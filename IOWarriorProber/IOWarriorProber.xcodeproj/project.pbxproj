@@ -336,7 +336,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.13;
+				SDKROOT = macosx;
 			};
 			name = Development;
 		};
@@ -345,7 +345,7 @@
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				SDKROOT = macosx10.13;
+				SDKROOT = macosx;
 			};
 			name = Deployment;
 		};
